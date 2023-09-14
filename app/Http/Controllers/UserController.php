@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Support\Facades\Auth;
+use App\Models\data;
 use App\Models\User;
 use App\Models\Uploads;
 use Illuminate\Http\Request;
@@ -112,5 +113,11 @@ class UserController extends Controller
         //  else{
         //      echo'Gagal ';
         // }
-
+        public function tampilkanProfil() {
+            // $Uploads = Uploads::first(); 
+            // return view('home', compact('uploads'));
+            $user = auth()->user()->id;
+            $data = Uploads::where('id', $user)->first();
+            return view('home', compact('data'));
+        }
     }
