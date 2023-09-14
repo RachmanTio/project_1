@@ -2,12 +2,12 @@
 
 namespace App\Http\Controllers;
 
-use Auth;
-use Session;
+use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Uploads;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Session;
 
 class UserController extends Controller
 {
@@ -79,29 +79,38 @@ class UserController extends Controller
     public function addgambar(Request $request)
     {      
         $user = auth()->user()->id;
-        // dd($user); 
-        $request->validate([
-            'gambar' => 'required',
-            'gambar.*' => 'mimes:doc,docx,PDF,pdf,jpg,jpeg,png|max:2000'
-            
-        ]);
-        if ($request->hasfile('gambar')) {            
-            $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
-            $request->file('gambar')->move(public_path('gambar'), $gambar);
-            Uploads::where('id', $user)->update([                        
-                'gambar' =>$gambar
+        // dd($request->all()); 
+
+            // $request->validate([
+            //     'image' => 'required|image|mimes:jpeg,png,jpg,gif',
+            //     'alamat' => 'required',
+            //     'tanggallahir' => 'required',
+            // ]);
+            if ($request->hasfile('gambar')) {            
+                $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
+                $request->file('gambar')->move(public_path('gambar'),$gambar);
+        //    Uploads::where('id', $user)->Uploads([
+        //         'gambar' => $gambar,
+        //         'alamat' => $request->alamat,
+        //         'tanggallahir' => $request->tanggallahir,
+        //     ]);
+            }
+            Uploads::where('id', $user)->update([
+                'gambar' => $gambar,
+                'alamat' => $request->alamat,
+                'tanggallahir' => $request->tanggallahir,
             ]);
+    
+            
             //  Uploads::create(
             //         [                        
             //             'gambar' =>$gambar
             //         ]
             //     );
-            echo'Success';
-        }else{
-            echo'Gagal ';
-        }
+            echo'Success'; 
+         }
+        //  else{
+        //      echo'Gagal ';
+        // }
+
     }
-
-    
-
-}

@@ -29,6 +29,7 @@ Route::get('profile', [UserController::class, 'profile'])->name('profile');
 Route::post('profile', [UserController::class, 'addgambar'])->name('addgambar');
 Route::middleware('auth')->group( function () {
     Route::post('profile', [UserController::class, 'addgambar'])->name('addgambar');
+  
 });
 
 

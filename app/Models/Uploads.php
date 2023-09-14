@@ -11,5 +11,5 @@ class Uploads extends Model
     
     protected $table ='tb_user';
     protected $primaryKey = 'id';
-    protected $fillable = array('gambar','created_at','updated_at');
+    protected $fillable = array('gambar','created_at','updated_at', 'alamat','tanggallahir');
 }
