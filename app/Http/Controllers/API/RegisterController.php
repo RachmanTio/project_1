@@ -25,12 +25,7 @@ class RegisterController extends BaseController
 
             'password' => 'required',
 
-            'tanggallahir' => 'required',
-
             'jeniskelamin' => 'required',
-
-            'alamat' => 'required',
-
 
         ]);
 
@@ -52,11 +47,8 @@ class RegisterController extends BaseController
 
         $input['username'] = ($input['username']);
 
-        $input['tanggallahir'] = ($input['tanggallahir']);
-
         $input['jeniskelamin'] = ($input['jeniskelamin']);
 
-        $input['alamat'] = ($input['alamat']);
 
         $user = User::create($input);
 

@@ -26,9 +26,7 @@ class UserController extends Controller
             'username' => $request->username,
             'email' => $request->email,
             'password' => Hash::make($request->password),
-            'tanggallahir' => $request->tanggallahir,
             'jeniskelamin' => $request->jeniskelamin,
-            'alamat' => $request->alamat,
             'role' => $request->role,
             'active' => 1
         ]);
@@ -68,7 +66,7 @@ class UserController extends Controller
             'email' => 'required',
             'new_password' => 'required|confirmed',
         ]);
-        $user = User::find(Auth::id());
+        $user = User::where('email', $request->email)->firstOrFail();
         $user->password = Hash::make($request->new_password);
         $user->save();
         $request->session()->regenerate();

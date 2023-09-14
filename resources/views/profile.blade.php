@@ -23,6 +23,14 @@
                                         <input type="file" class="form-control" name="gambar" required>
                                     </div>
                                 </div>
+                                <div class="form-group">
+                                    <label><i class="fa fa-address-card"></i> Alamat</label>
+                                    <input type="text" name="alamat" class="form-control" placeholder="Alamat" required="">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa fa-address-card"></i> Tanggal Lahir</label>
+                                    <input type="date" name="alamat" class="form-control" placeholder="Alamat" required="">
+                                </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">
                                         <button type="submit" class="btn btn-primary">

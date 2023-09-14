@@ -35,16 +35,9 @@
                     <input type="password" name="password" class="form-control" placeholder="Password" required="">
                 </div>
                 <div class="form-group">
-                    <label><i class="fa fa-calendar"></i> Tanggal Lahir</label>
-                    <input type="tanggallahir" name="tanggallahir" class="form-control" placeholder="Tanggal Lahir" required="">
-                </div>
-                <div class="form-group">
-                    <label><i class="fa fa-venus-mars"></i> Jenis Kelamin</label>
-                    <input type="text" name="jeniskelamin" class="form-control" placeholder="Jenis Kelamin" required="">
-                </div>
-                <div class="form-group">
-                    <label><i class="fa fa-address-card"></i> Alamat</label>
-                    <input type="text" name="alamat" class="form-control" placeholder="Alamat" required="">
+                    <label><i class="fa fa-venus-mars"></i> Gender</label>
+                    <input type="radio" name="jeniskelamin" value="Laki Laki" class="" placeholder="Jenis Kelamin" required="">Laki Laki
+                    <input type="radio" name="jeniskelamin" value="Perempuan" class="" placeholder="Jenis Kelamin" required="">Perempuan
                 </div>
                 <button type="submit" class="btn btn-primary btn-block"><i class="fa fa-user"></i> Register</button>
                 <hr>
