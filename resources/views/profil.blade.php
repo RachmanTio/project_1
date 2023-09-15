@@ -8,7 +8,7 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-    <h1>Profil</h1>
+    <h1>Profile</h1>
     <p>username: {{ $data->username }}</p>
     <p>email: {{ $data->email }}</p>
     <p>tanggal lahir: {{ $data->tanggallahir }}</p>

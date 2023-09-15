@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            return redirect()->intended('/profil');
         }
 
         return back()->withErrors([
@@ -110,8 +110,16 @@ class UserController extends Controller
             //     );
             echo'Success'; 
          }
+         public function tampilkanProfil() {
+            // $Uploads = Uploads::first(); 
+            // return view('home', compact('uploads'));
+            $user = auth()->user()->id;
+            $data = Uploads::where('id', $user)->first();
+            return view('profil', compact('data'));
+        }
         //  else{
         //      echo'Gagal ';
         // }
+
         
     }

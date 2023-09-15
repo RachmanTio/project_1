@@ -21,7 +21,7 @@
                 <button type="submit" class="btn btn-primary btn-block" >Log In  </button>
                 <hr>
                 <p class="text-center">Belum punya akun? <a href="/register">Register</a> sekarang!</p>
-                <p class="text-center">Lupa akun? <a href="/password">Ubah Password</a> sekarang!</p>
+                <p class="text-center">Lupa akun? <a href="{{ route('forget.password.get') }}">Ubah Password</a> sekarang!</p>
 
             </form>
         </div>
