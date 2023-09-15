@@ -35,7 +35,9 @@ class UserController extends BaseController
             $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
             $request->file('gambar')->move(public_path('gambar'), $gambar);
             User::where('id', $user)->update([                        
-                'gambar' =>$gambar
+                'gambar' => $gambar,
+                'alamat' => $request->alamat,
+                'tanggallahir' => $request->tanggallahir,
             ]);
             //  Uploads::create(
             //         [                        

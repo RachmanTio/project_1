@@ -8,6 +8,13 @@
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
+    <h1>Profil</h1>
+    <p>username: {{ $data->username }}</p>
+    <p>email: {{ $data->email }}</p>
+    <p>tanggal lahir: {{ $data->tanggallahir }}</p>
+    <p>jenis kelamin: {{ $data->jeniskelamin }}</p>
+    <p>jenis kelamin: {{ $data->alamat }}</p>
+    <p>gambar: {{ $data->gambar }}</p>
     @auth
 <p>Welcome <b>{{ Auth::user()->name }}</b></p>
 <a class="btn btn-primary" href="/login">Back</a>
