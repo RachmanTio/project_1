@@ -24,12 +24,25 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-address-card"></i> Alamat</label>
-                                    <input type="text" name="alamat" class="form-control" placeholder="Alamat" required="">
+                                    <label><i class="fa fa-user"></i> Username</label>
+                                    <input type="text" name="username" class="form-control" placeholder="Username">
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa fa-envelope"></i> Email</label>
+                                    <input type="email" name="email" class="form-control" placeholder="Email" >
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa fa-venus-mars"></i> Gender</label>
+                                    <input type="radio" name="jeniskelamin" value="Laki Laki" class="" placeholder="Jenis Kelamin" >Laki Laki
+                                    <input type="radio" name="jeniskelamin" value="Perempuan" class="" placeholder="Jenis Kelamin" >Perempuan
                                 </div>
                                 <div class="form-group">
                                     <label><i class="fa fa-address-card"></i> Tanggal Lahir</label>
-                                    <input type="date" name="tanggallahir" class="form-control" placeholder="Alamat" required="">
+                                    <input type="date" name="tanggallahir" class="form-control" placeholder="Alamat" >
+                                </div>
+                                <div class="form-group">
+                                    <label><i class="fa fa-address-card"></i> Alamat</label>
+                                    <input type="text" name="alamat" class="form-control" placeholder="Alamat" >
                                 </div>
                                 <div class="form-group row mb-0">
                                     <div class="col-md-6 offset-md-4">

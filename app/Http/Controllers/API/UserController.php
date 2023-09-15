@@ -21,7 +21,7 @@ class UserController extends BaseController
 
         return $this->sendResponse($users, 'Products retrieved successfully.');
     }
-    public function addgambar(Request $request)
+    public function user_profile(Request $request)
     {      
         $user = auth()->user()->id;
         // return $this->sendResponse('tes', 'Succes');
@@ -35,6 +35,9 @@ class UserController extends BaseController
             $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
             $request->file('gambar')->move(public_path('gambar'), $gambar);
             User::where('id', $user)->update([                        
+                'username' => $request->username,
+                'email' => $request->email,
+                'jeniskelamin' => $request->jeniskelamin,
                 'gambar' => $gambar,
                 'alamat' => $request->alamat,
                 'tanggallahir' => $request->tanggallahir,

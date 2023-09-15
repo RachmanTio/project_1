@@ -13,12 +13,12 @@
     <p>email: {{ $data->email }}</p>
     <p>tanggal lahir: {{ $data->tanggallahir }}</p>
     <p>jenis kelamin: {{ $data->jeniskelamin }}</p>
-    <p>jenis kelamin: {{ $data->alamat }}</p>
+    <p>alamat: {{ $data->alamat }}</p>
     <p>gambar: {{ $data->gambar }}</p>
     @auth
 <p>Welcome <b>{{ Auth::user()->name }}</b></p>
 <a class="btn btn-primary" href="/login">Back</a>
-<a class="btn btn-primary" href="/profile">PROFILE</a>
+<a class="btn btn-primary" href="/profile">EDIT</a>
 @endauth
 </body>
 </html>

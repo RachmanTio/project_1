@@ -49,7 +49,7 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            return redirect()->intended('/profil');
         }
 
         return back()->withErrors([
@@ -77,7 +77,7 @@ class UserController extends Controller
     {
         return view('profile');
     }
-    public function addgambar(Request $request)
+    public function user_profile(Request $request)
     {      
         $user = auth()->user()->id;
         // dd($request->all()); 
@@ -97,9 +97,13 @@ class UserController extends Controller
         //     ]);
             }
             Uploads::where('id', $user)->update([
+                'username' => $request->username,
+                'email' => $request->email,
+                'jeniskelamin' => $request->jeniskelamin,
                 'gambar' => $gambar,
                 'alamat' => $request->alamat,
                 'tanggallahir' => $request->tanggallahir,
+
             ]);
     
             
@@ -118,6 +122,6 @@ class UserController extends Controller
             // return view('home', compact('uploads'));
             $user = auth()->user()->id;
             $data = Uploads::where('id', $user)->first();
-            return view('home', compact('data'));
+            return view('profil', compact('data'));
         }
     }
