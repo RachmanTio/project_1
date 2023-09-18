@@ -16,9 +16,13 @@ class UserController extends Controller
     {
         return view('register');
     }
-    public function home()
+    public function food()
     {
-        return view('home');
+        return view('food');
+    }
+    public function drink()
+    {
+        return view('drink');
     }
     
     public function actionregister(Request $request)
@@ -49,7 +53,7 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/home');
+            return redirect()->intended('/food');
         }
 
         return back()->withErrors([
