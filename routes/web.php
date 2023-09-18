@@ -20,6 +20,7 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::get('/', function () {
     return view('login');
 });
+Route::get('home', [UserController::class, 'home'])->name('home');
 Route::post('register', [UserController::class, 'actionregister'])->name('actionregister');
 Route::get('register', [UserController::class, 'register'])->name('register');
 Route::get('login', [UserController::class, 'login'])->name('login');
@@ -36,7 +37,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 Route::middleware('auth')->group( function () {
     Route::post('profile', [UserController::class, 'addgambar'])->name('addgambar');
-  
+    Route::get('home', [UserController::class, 'home'])->name('home');
 });
 
 
