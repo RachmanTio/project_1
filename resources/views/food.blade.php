@@ -50,17 +50,17 @@
                     <p class="text-white mb-0 small">x4</p>
                   </div>
                 </div>
-                <img src="https://img.freepik.com/premium-photo/big-burger-hamburger-cheeseburger-symbol-fast-food-street-food-design-logotype-restaurant-cafe_726113-795.jpg?w=2000" alt="image" height="300" width="300"
+                <img src="{{asset('')  . $data[0]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <p class="small"><a href="#!" class="text-muted">FOOD</a></p>
-                    <p class="small text-danger"><s>Rp.30.0000</s></p>
+                    <p class="small text-danger"><s>Rp.22.0000</s></p>
                   </div>
       
                   <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">Big Burger</h5>
-                    <h5 class="text-dark mb-0">RP.27.000</h5>
+                    <h5 class="mb-0">{{$data[0]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[0]->harga}}</h5>
                   </div>
       
                   <div class="d-flex justify-content-between mb-2">
@@ -86,17 +86,17 @@
                     <p class="text-white mb-0 small">x2</p>
                   </div>
                 </div>
-                <img src="https://t3.ftcdn.net/jpg/00/27/57/96/360_F_27579652_tM7V4fZBBw8RLmZo0Bi8WhtO2EosTRFD.jpg" alt="image" height="300" width="300"
+                <img src="{{asset('')  . $data[1]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <p class="small"><a href="#!" class="text-muted">FOOD</a></p>
-                    <p class="small text-danger"><s>Rp.45.000</s></p>
+                    <p class="small text-danger"><s>Rp.28.000</s></p>
                   </div>
       
                   <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">Pizza Macaroni</h5>
-                    <h5 class="text-dark mb-0">Rp.42.000</h5>
+                    <h5 class="mb-0">{{$data[1]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[1]->harga}}</h5>
                   </div>
       
                   <div class="d-flex justify-content-between mb-2">
@@ -122,17 +122,17 @@
                     <p class="text-white mb-0 small">x3</p>
                   </div>
                 </div>
-                <img src="https://asset.kompas.com/crops/B_DV5V6k-8yyl8Z9daS3hb6E3_M=/0x0:739x493/750x500/data/photo/2020/07/28/5f1fdcdacafc4.jpg" alt="image" height="300" width="300"
+                <img src="{{asset('')  . $data[2]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <p class="small"><a href="#!" class="text-muted">FOOD</a></p>
-                    <p class="small text-danger"><s>Rp.19.000</s></p>
+                    <p class="small text-danger"><s>Rp.17.000</s></p>
                   </div>
       
                   <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">Sate Kambing</h5>
-                    <h5 class="text-dark mb-0">Rp.17.000</h5>
+                    <h5 class="mb-0">{{$data[2]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[2]->harga}}</h5>
                   </div>
       
                   <div class="d-flex justify-content-between mb-2">

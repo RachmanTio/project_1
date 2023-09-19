@@ -24,6 +24,6 @@ Route::post('password_action', [RegisterController::class, 'password_action']);
 Route::post('login', [RegisterController::class, 'login']);
 Route::middleware('auth:api')->group( function () {
     Route::get('userlist', [UserController::class, 'index']);
-    Route::post('addgambar', [UserController::class, 'addgambar']);
+    Route::post('user_profile', [RegisterController::class, 'user_profile']);
 
 });

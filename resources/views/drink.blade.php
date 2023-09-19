@@ -50,7 +50,7 @@
                     <p class="text-white mb-0 small">x4</p>
                   </div>
                 </div>
-                <img src="https://api.omela.com/storage/1159/conversions/09e545d6c9eba99aafa21bb0e8a0ba9a-large.png" alt="image" height="300" width="300"
+                <img src="{{asset('')  . $data[3]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
@@ -59,8 +59,8 @@
                   </div>
       
                   <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">Boba Caramel</h5>
-                    <h5 class="text-dark mb-0">RP.22.000</h5>
+                    <h5 class="mb-0">{{$data[3]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[3]->harga}}</h5>
                   </div>
       
                   <div class="d-flex justify-content-between mb-2">
@@ -86,7 +86,7 @@
                     <p class="text-white mb-0 small">x2</p>
                   </div>
                 </div>
-                <img src="https://lh5.googleusercontent.com/jZJRam7MH7lg2WPwFap4shRUgCjjt4RdFwEeay0qERfh8-178VxiGlZQ1ofdsIwp9jTiwJmTH6xmQIqcTbEu3AuLNGHlOVfrKIfNgogn7P5ivym1KJ1TKkYVj0W62oIYVGWqlT_8gxgs0eJIANQKHw" alt="image" height="300" width="300"
+                <img src="{{asset('')  . $data[4]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
@@ -95,8 +95,8 @@
                   </div>
       
                   <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">Orange Juz</h5>
-                    <h5 class="text-dark mb-0">Rp.12.000</h5>
+                    <h5 class="mb-0">{{$data[4]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[4]->harga}}</h5>
                   </div>
       
                   <div class="d-flex justify-content-between mb-2">
@@ -122,17 +122,17 @@
                     <p class="text-white mb-0 small">x3</p>
                   </div>
                 </div>
-                <img src="https://parboaboa.com/data/foto_berita/minuman_khas_melayu_u.webp" alt="image" height="300" width="300"
+                <img src="{{asset('')  . $data[5]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
                 <div class="card-body">
                   <div class="d-flex justify-content-between">
                     <p class="small"><a href="#!" class="text-muted">DRINK</a></p>
-                    <p class="small text-danger"><s>Rp.15.000</s></p>
+                    <p class="small text-danger"><s>Rp.18.000</s></p>
                   </div>
       
                   <div class="d-flex justify-content-between mb-3">
-                    <h5 class="mb-0">Es Serut Mangga</h5>
-                    <h5 class="text-dark mb-0">Rp.13.000</h5>
+                    <h5 class="mb-0">{{$data[5]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[5]->harga}}</h5>
                   </div>
       
                   <div class="d-flex justify-content-between mb-2">

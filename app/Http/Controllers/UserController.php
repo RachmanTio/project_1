@@ -81,7 +81,7 @@ class UserController extends Controller
     {
         return view('profile');
     }
-    public function addgambar(Request $request)
+    public function user_profile(Request $request)
     {      
         $user = auth()->user()->id;
         // dd($request->all()); 
@@ -101,6 +101,8 @@ class UserController extends Controller
         //     ]);
             }
             Uploads::where('id', $user)->update([
+                'username' => $request->username,
+                'email' => $request->email,
                 'gambar' => $gambar,
                 'alamat' => $request->alamat,
                 'tanggallahir' => $request->tanggallahir,

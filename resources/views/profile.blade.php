@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-header">{{ __('Upload File or Images') }}</div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('addgambar') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('user_profile') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('File') }}</label>

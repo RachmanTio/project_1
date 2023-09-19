@@ -104,11 +104,10 @@ class RegisterController extends BaseController
         // return back()->with('success', 'Password changed!');
         return $this->sendResponse($user, 'User login successfully.');
     }
-    
-    public function addgambar(Request $request)
+    public function user_profile(Request $request)
     {      
         $user = auth()->user()->id;
-        return $this->sendResponse($users, 'Succes');
+        // return $this->sendResponse('tes', 'Succes');
         // dd($user); 
         $request->validate([
             'gambar' => 'required',
@@ -118,17 +117,22 @@ class RegisterController extends BaseController
         if ($request->hasfile('gambar')) {            
             $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
             $request->file('gambar')->move(public_path('gambar'), $gambar);
-            Uploads::where('id', $user)->update([                        
-                'gambar' =>$gambar
+            User::where('id', $user)->update([                        
+                'username' => $request->username,
+                'email' => $request->email,
+                'jeniskelamin' => $request->jeniskelamin,
+                'gambar' => $gambar,
+                'alamat' => $request->alamat,
+                'tanggallahir' => $request->tanggallahir,
             ]);
             //  Uploads::create(
             //         [                        
             //             'gambar' =>$gambar
             //         ]
             //     );
-            return $this->sendResponse($users, 'Succes');
+            return $this->sendResponse('tes', 'Succes');
         }else{
-            return $this->sendResponse($users, 'gagal');
+            return $this->sendResponse('tes', 'gagal');
         }
     }
 

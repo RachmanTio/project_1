@@ -21,34 +21,34 @@ class UserController extends BaseController
 
         return $this->sendResponse($users, 'Products retrieved successfully.');
     }
-    public function addgambar(Request $request)
-    {      
-        $user = auth()->user()->id;
-        // return $this->sendResponse('tes', 'Succes');
-        // dd($user); 
-        $request->validate([
-            'gambar' => 'required',
-            'gambar.*' => 'mimes:doc,docx,PDF,pdf,jpg,jpeg,png|max:2000'
+    // public function addgambar(Request $request)
+    // {      
+    //     $user = auth()->user()->id;
+    //     // return $this->sendResponse('tes', 'Succes');
+    //     // dd($user); 
+    //     $request->validate([
+    //         'gambar' => 'required',
+    //         'gambar.*' => 'mimes:doc,docx,PDF,pdf,jpg,jpeg,png|max:2000'
             
-        ]);
-        if ($request->hasfile('gambar')) {            
-            $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
-            $request->file('gambar')->move(public_path('gambar'), $gambar);
-            User::where('id', $user)->update([                        
-                'gambar' => $gambar,
-                'alamat' => $request->alamat,
-                'tanggallahir' => $request->tanggallahir,
-            ]);
-            //  Uploads::create(
-            //         [                        
-            //             'gambar' =>$gambar
-            //         ]
-            //     );
-            return $this->sendResponse('tes', 'Succes');
-        }else{
-            return $this->sendResponse('tes', 'gagal');
-        }
-    }
+    //     ]);
+    //     if ($request->hasfile('gambar')) {            
+    //         $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
+    //         $request->file('gambar')->move(public_path('gambar'), $gambar);
+    //         User::where('id', $user)->update([                        
+    //             'gambar' => $gambar,
+    //             'alamat' => $request->alamat,
+    //             'tanggallahir' => $request->tanggallahir,
+    //         ]);
+    //         //  Uploads::create(
+    //         //         [                        
+    //         //             'gambar' =>$gambar
+    //         //         ]
+    //         //     );
+    //         return $this->sendResponse('tes', 'Succes');
+    //     }else{
+    //         return $this->sendResponse('tes', 'gagal');
+    //     }
+    // }
 
     /**
      * Show the form for creating a new resource.
