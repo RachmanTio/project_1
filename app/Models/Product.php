@@ -14,6 +14,10 @@ class Product extends Model
         'deskripsi',
         'gambar',
         'harga',
-        'kategori_id',
-    ];
+        'kategori_id', 
+    ]; 
+    public function keranjang()
+    {
+        return $this->belongsTo(Keranjang::keranjang_item, 'id', 'ID_PRODUCT');
+    }
 }

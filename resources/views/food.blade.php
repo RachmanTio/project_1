@@ -32,6 +32,7 @@
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
+              <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
               <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
               <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
             </ul>
@@ -62,6 +63,7 @@
                     <h5 class="mb-0">{{$data[0]->nama_product}}</h5>
                     <h5 class="text-dark mb-0">{{$data[0]->harga}}</h5>
                   </div>
+                  <p class="btn-holder"><a href="{{ route('add.to.cart', $data[0]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
       
                   <div class="d-flex justify-content-between mb-2">
                     <p class="text-muted mb-0">Available: <span class="fw-bold">6</span></p>
@@ -98,6 +100,7 @@
                     <h5 class="mb-0">{{$data[1]->nama_product}}</h5>
                     <h5 class="text-dark mb-0">{{$data[1]->harga}}</h5>
                   </div>
+                  <p class="btn-holder"><a href="{{ route('add.to.cart', $data[1]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
       
                   <div class="d-flex justify-content-between mb-2">
                     <p class="text-muted mb-0">Available: <span class="fw-bold">7</span></p>
@@ -134,6 +137,7 @@
                     <h5 class="mb-0">{{$data[2]->nama_product}}</h5>
                     <h5 class="text-dark mb-0">{{$data[2]->harga}}</h5>
                   </div>
+                  <p class="btn-holder"><a href="{{ route('add.to.cart', $data[2]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
       
                   <div class="d-flex justify-content-between mb-2">
                     <p class="text-muted mb-0">Available: <span class="fw-bold">5</span></p>
