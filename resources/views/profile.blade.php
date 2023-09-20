@@ -15,7 +15,7 @@
                     <div class="card">
                         <div class="card-header">{{ __('Upload File or Images') }}</div>
                         <div class="card-body">
-                            <form method="POST" action="{{ route('addgambar') }}" enctype="multipart/form-data">
+                            <form method="POST" action="{{ route('user_profile') }}" enctype="multipart/form-data">
                                 @csrf
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('File') }}</label>
@@ -24,7 +24,7 @@
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-user"></i> Username</label>
+                                    <label><i class="fa fa-user"></i> Username{{$data->username}}</label>
                                     <input type="text" name="username" class="form-control" placeholder="Username">
                                 </div>
                                 <div class="form-group">
@@ -37,11 +37,11 @@
                                     <input type="radio" name="jeniskelamin" value="Perempuan" class="" placeholder="Jenis Kelamin" >Perempuan
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-address-card"></i> Tanggal Lahir</label>
+                                    <label><i class="fa fa-address-card"></i> Tanggal Lahir{{ $data->tanggallahir }}</label>
                                     <input type="date" name="tanggallahir" class="form-control" placeholder="Alamat" >
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-address-card"></i> Alamat</label>
+                                    <label><i class="fa fa-address-card"></i> Alamat {{ $data->alamat }}</label>
                                     <input type="text" name="alamat" class="form-control" placeholder="Alamat" >
                                 </div>
                                 <div class="form-group row mb-0">
@@ -51,6 +51,7 @@
                                         </button>
                                     </div>
                                 </div>
+                                <a class="btn btn-primary" href="/profil">KEMBALI</a>
                             </form>
                         </div>
                     </div>
