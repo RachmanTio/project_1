@@ -20,11 +20,11 @@
                                 <div class="form-group row">
                                     <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('File') }}</label>
                                     <div class="col-md-6">
-                                        <input type="file" class="form-control" name="gambar" required>
+                                        <input type="file" class="form-control" name="gambar">
                                     </div>
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-user"></i> Username{{$data->username}}</label>
+                                    <label><i class="fa fa-user"></i> Username</label>
                                     <input type="text" name="username" class="form-control" placeholder="Username">
                                 </div>
                                 <div class="form-group">
@@ -37,11 +37,11 @@
                                     <input type="radio" name="jeniskelamin" value="Perempuan" class="" placeholder="Jenis Kelamin" >Perempuan
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-address-card"></i> Tanggal Lahir{{ $data->tanggallahir }}</label>
+                                    <label><i class="fa fa-address-card"></i> Tanggal Lahir</label>
                                     <input type="date" name="tanggallahir" class="form-control" placeholder="Alamat" >
                                 </div>
                                 <div class="form-group">
-                                    <label><i class="fa fa-address-card"></i> Alamat {{ $data->alamat }}</label>
+                                    <label><i class="fa fa-address-card"></i> Alamat </label>
                                     <input type="text" name="alamat" class="form-control" placeholder="Alamat" >
                                 </div>
                                 <div class="form-group row mb-0">
