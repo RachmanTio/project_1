@@ -45,11 +45,6 @@
               <div class="card">
                 <div class="d-flex justify-content-between p-3">
                   <p class="lead mb-0">Recomend Drink For You</p>
-                  <div
-                    class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                    style="width: 35px; height: 35px;">
-                    <p class="text-white mb-0 small">x4</p>
-                  </div>
                 </div>
                 <img src="{{asset('')  . $data[3]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
@@ -83,11 +78,6 @@
               <div class="card">
                 <div class="d-flex justify-content-between p-3">
                   <p class="lead mb-0">Recomend Drink For You</p>
-                  <div
-                    class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                    style="width: 35px; height: 35px;">
-                    <p class="text-white mb-0 small">x2</p>
-                  </div>
                 </div>
                 <img src="{{asset('')  . $data[4]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
@@ -121,11 +111,6 @@
               <div class="card">
                 <div class="d-flex justify-content-between p-3">
                   <p class="lead mb-0">Recomend Drink For You</p>
-                  <div
-                    class="bg-info rounded-circle d-flex align-items-center justify-content-center shadow-1-strong"
-                    style="width: 35px; height: 35px;">
-                    <p class="text-white mb-0 small">x3</p>
-                  </div>
                 </div>
                 <img src="{{asset('')  . $data[5]->gambar}}" alt="image" height="300" width="300"
                   class="card-img-top" alt="" />
@@ -140,6 +125,111 @@
                     <h5 class="text-dark mb-0">{{$data[5]->harga}}</h5>
                   </div>
                   <p class="btn-holder"><a href="{{ route('add.to.cart', $data[5]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+
+      
+                  <div class="d-flex justify-content-between mb-2">
+                    <p class="text-muted mb-0">Available: <span class="fw-bold">5</span></p>
+                    <div class="ms-auto text-warning">
+                      <i class="fa fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="container py-5">
+          <div class="row">
+            <div class="col-md-12 col-lg-4 mb-4 mb-lg-0">
+              <div class="card">
+                <div class="d-flex justify-content-between p-3">
+                  <p class="lead mb-0">Recomend Drink For You</p>
+                </div>
+                <img src="{{asset('')  . $data[9]->gambar}}" alt="image" height="300" width="300"
+                  class="card-img-top" alt="" />
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <p class="small"><a href="#!" class="text-muted">DRINK</a></p>
+                    <p class="small text-danger"><s>Rp.13.000</s></p>
+                  </div>
+      
+                  <div class="d-flex justify-content-between mb-3">
+                    <h5 class="mb-0">{{$data[9]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[9]->harga}}</h5>
+                  </div>
+                  <p class="btn-holder"><a href="{{ route('add.to.cart', $data[9]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+
+      
+                  <div class="d-flex justify-content-between mb-2">
+                    <p class="text-muted mb-0">Available: <span class="fw-bold">6</span></p>
+                    <div class="ms-auto text-warning">
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                      <i class="fa fa-star"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+              <div class="card">
+                <div class="d-flex justify-content-between p-3">
+                  <p class="lead mb-0">Recomend Drink For You</p>
+                </div>
+                <img src="{{asset('')  . $data[10]->gambar}}" alt="image" height="300" width="300"
+                  class="card-img-top" alt="" />
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <p class="small"><a href="#!" class="text-muted">DRINK</a></p>
+                    <p class="small text-danger"><s>Rp.4.000</s></p>
+                  </div>
+      
+                  <div class="d-flex justify-content-between mb-3">
+                    <h5 class="mb-0">{{$data[10]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[10]->harga}}</h5>
+                  </div>
+                  <p class="btn-holder"><a href="{{ route('add.to.cart', $data[10]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
+
+      
+                  <div class="d-flex justify-content-between mb-2">
+                    <p class="text-muted mb-0">Available: <span class="fw-bold">5</span></p>
+                    <div class="ms-auto text-warning">
+                      <i class="fa fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star"></i>
+                      <i class="fas fa-star-half-alt"></i>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6 col-lg-4 mb-4 mb-md-0">
+              <div class="card">
+                <div class="d-flex justify-content-between p-3">
+                  <p class="lead mb-0">Recomend Drink For You</p>
+                </div>
+                <img src="{{asset('')  . $data[11]->gambar}}" alt="image" height="300" width="300"
+                  class="card-img-top" alt="" />
+                <div class="card-body">
+                  <div class="d-flex justify-content-between">
+                    <p class="small"><a href="#!" class="text-muted">DRINK</a></p>
+                    <p class="small text-danger"><s>Rp.5.000</s></p>
+                  </div>
+      
+                  <div class="d-flex justify-content-between mb-3">
+                    <h5 class="mb-0">{{$data[11]->nama_product}}</h5>
+                    <h5 class="text-dark mb-0">{{$data[11]->harga}}</h5>
+                  </div>
+                  <p class="btn-holder"><a href="{{ route('add.to.cart', $data[11]->id) }}" class="btn btn-warning btn-block text-center" role="button">Add to cart</a> </p>
 
       
                   <div class="d-flex justify-content-between mb-2">

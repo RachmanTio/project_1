@@ -29,7 +29,8 @@ class ProductController extends Controller
     public function cart()
     {
         $product = Keranjang::all();
-        return view('cart', compact('data'));
+        // dd($product);
+        return view('cart', ['productList' => $product]);
     }
     public function index()
 
@@ -107,25 +108,16 @@ class ProductController extends Controller
         }
 
     }
-    public function remove(Request $request)
+    public function remove($id, Request $request)
 
     {
-
-        if($request->id) {
-
-            $cart = session()->get('cart');
-
-            if(isset($cart[$request->id])) {
-
-                unset($cart[$request->id]);
-
-                session()->put('cart', $cart);
-
-            }
-
-            session()->flash('success', 'Product removed successfully');
-
-        }
+        $productId = $request->input('id');
+    
+    // Logic to remove the product from the cart
+    Keranjang::where('id', $id)->delete();
+    
+    // Redirect back to the cart page or any other appropriate page
+    return redirect()->route('cart');
 
     }
 

@@ -28,7 +28,9 @@ return new class extends Migration
     public function down()
     {
         Schema::table('keranjang_item', function (Blueprint $table) {
-            //
+            $table->string('nama');
+            $table->string('gambar');
+            $table->integer('harga');
         });
     }
 };

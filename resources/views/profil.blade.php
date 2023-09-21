@@ -32,6 +32,7 @@
                   <button type="submit" class="btn btn-default">Submit</button>
                 </form>
                 <ul class="nav navbar-nav navbar-right">
+                  <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
                   <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
                   <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
                 </ul>
