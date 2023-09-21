@@ -29,15 +29,15 @@ class ProductController extends Controller
     public function cart()
     {
         $product = Keranjang::all();
-        return view('cart', compact('product'));
+        return view('cart', compact('data'));
     }
     public function index()
 
     {
 
-        $products = Product::all();
+        $products = Kaeranjang::all();
 
-        return view('food', compact('food'));
+        return view('cart', compact('cart'));
 
     }
     public function addToCart($id)

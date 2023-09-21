@@ -65,8 +65,8 @@
                               <th class="hidden text-right md:table-cell"> Remove </th>
                             </tr>
                           </thead>
-                          <tbody>
-                              @foreach ($keranjang_item as $item)
+                          {{-- <tbody>
+                              @foreach ($data as $item)
                             <tr>
                               <td class="hidden pb-4 md:table-cell">
                                 <a href="#">
@@ -109,9 +109,9 @@
                             </tr>
                             @endforeach
                              
-                          </tbody>
+                          </tbody> --}}
                         </table>
-                        <div>
+                        {{-- <div>
                          Total: ${{ Cart::getTotal() }}
                         </div>
                         <div>
@@ -119,7 +119,7 @@
                             @csrf
                             <button class="px-6 py-2 text-red-800 bg-red-300">Remove All Cart</button>
                           </form>
-                        </div>
+                        </div> --}}
 
 
                       </div>
