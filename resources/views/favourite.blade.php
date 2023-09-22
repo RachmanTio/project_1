@@ -33,8 +33,8 @@
               <button type="submit" class="btn btn-default">Submit</button>
             </form>
             <ul class="nav navbar-nav navbar-right">
-              <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
-              <li><a href="/cart"><span class="glyphicon glyphicon-log-in"></span> Keranjang</a></li>
+                <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
+                <li><a href="/cart"><span class="glyphicon glyphicon-log-in"></span> Keranjang</a></li>
               <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
               <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
             </ul>
@@ -54,8 +54,6 @@
                 <th style="width:50%">Product</th>
     
                 <th style="width:10%">Price</th>
-        
-                <th style="width:22%" class="text-center">Subtotal</th>
     
                 <th style="width:10%"></th>
     
@@ -63,12 +61,12 @@
     
           </thead>
           <tbody>
-            @php $total = 0 @endphp
+            {{-- @php $total = 0 @endphp
 
-            @if(session('cart'))
+            @if(session('cart')) --}}
     
                 {{-- @foreach(session('cart') as $id => $details) --}}
-                @foreach($productList as $id => $details)
+                {{-- @foreach($productList as $id => $details)
     
                     @php $total += intval($details->harga) * intval($details->qty) @endphp
     
@@ -90,10 +88,6 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->harga }}</td>
-    
-    
-                        <td data-th="Subtotal" class="text-center">{{ intval($details->harga) * intval($details->qty) }}</td>
     
                         <td class="actions" data-th="">
     
@@ -104,24 +98,16 @@
                     </tr>
     
                 @endforeach
-            @endif
+            @endif --}}
           </tbody>
           <tfoot>
-
-            <tr>
-    
-                <td colspan="5" class="text-right"><h3><strong>Total Rp{{ $total }}</strong></h3></td>
-    
-            </tr>
     
             <tr>
     
                 <td colspan="5" class="text-right">
     
-                    <a href="{{ url('') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-    
-                    <button class="btn btn-success">Checkout</button>
-    
+                    <a href="{{ url('/') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+        
                 </td>
     
             </tr>

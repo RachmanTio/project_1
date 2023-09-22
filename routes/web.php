@@ -43,6 +43,7 @@ Route::get('cart', [ProductController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
 Route::post('remove-from-cart/{id}', [ProductController::class, 'remove'])->name('remove.from.cart');
+Route::get('favourite', [ProductController::class, 'favourite'])->name('favourite');
 Route::middleware('auth')->group( function () {
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::get('home', [UserController::class, 'home'])->name('home');

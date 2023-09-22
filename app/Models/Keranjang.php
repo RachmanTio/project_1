@@ -15,7 +15,12 @@ class Keranjang extends Model
         'qty',
         'nama',
         'gambar',
+        'user_id',
         'harga',
     ];
+    public function User()
+    {
+        return $this->belongsTo(User::tb_pengguna, 'id', 'id');
+    }
 
 }

@@ -28,7 +28,9 @@ class ProductController extends Controller
     }
     public function cart()
     {
-        $product = Keranjang::all();
+        $user = auth()->user()->id;
+        $product = Keranjang::where('user_id', $user)->get();
+        // dd($product);
         // dd($product);
         return view('cart', ['productList' => $product]);
     }
@@ -45,13 +47,14 @@ class ProductController extends Controller
 
     {
     
-
+        $user = auth()->user()->id;
         $product = Product::findOrFail($id);
         Keranjang::create([
             'ID_PRODUCT'=>$product->id,
             'nama'=>$product->nama_product,
             'gambar'=>$product->gambar,
             'harga'=>$product->harga,
+            'user_id'=>$user,
             'qty'=>1,
         ]);
 
@@ -119,6 +122,10 @@ class ProductController extends Controller
     // Redirect back to the cart page or any other appropriate page
     return redirect()->route('cart');
 
+    }
+    public function favourite()
+    {
+        return view('favourite');
     }
 
 }
