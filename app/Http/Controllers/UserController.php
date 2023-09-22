@@ -80,13 +80,7 @@ class UserController extends Controller
     public function user_profile(Request $request)
     {      
         $user = auth()->user()->id;
-        // dd($request->all()); 
 
-            // $request->validate([
-            //     'image' => 'required|image|mimes:jpeg,png,jpg,gif',
-            //     'alamat' => 'required',
-            //     'tanggallahir' => 'required',
-            // ]);
             if ($request->hasfile('gambar')) {            
                 $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
                 $request->file('gambar')->move(public_path('gambar'),$gambar);
@@ -123,5 +117,11 @@ class UserController extends Controller
             $user = auth()->user()->id;
             $data = Uploads::where('id', $user)->first();
             return view('profil', compact('data'));
+        }
+
+        public function editProfile(){
+            $user = auth()->user()->id;
+            $data = Uploads::all();
+            return view('profile', compact('data'));
         }
     }

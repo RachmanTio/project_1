@@ -31,13 +31,18 @@ Route::post('login', [UserController::class, 'login_action'])->name('login_actio
 // Route::get('password', [UserController::class, 'password'])->name('password');
 // Route::post('password', [UserController::class, 'password_action'])->name('password.action');
 
+Route::get('food', [ProductController::class, 'product'])->name('food');
+Route::get('drink', [ProductController::class, 'productdrink'])->name('drink');
+Route::get('food', [UserController::class, 'food'])->name('food');
+Route::get('drink', [UserController::class, 'drink'])->name('drink');
+
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 Route::get('profil', [userController::class, 'tampilkanProfil'])->name('profil');
-Route::get('api/profil', [userController::class, 'tampilkanProfil'])->name('profil');
+
 // Route::get('home', [UserController::class, 'home'])->name('home');
 
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
