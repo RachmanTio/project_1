@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use auth;
 use App\Models\Product;
 use App\Models\Uploads;
+use App\Models\Favourite;
 use App\Models\Keranjang;
 use App\Models\dataproduct;
 use Illuminate\Http\Request;
@@ -16,14 +17,14 @@ class ProductController extends Controller
         // $product = auth()->product()->id;
         // $data = Uploads::where('id', $product)->first();
         // return view('food', 'drink', compact('data'));
-        $data = Product::all();
+        $data = Product::where('kategori', 1)->get();
         return view('food', compact('data'));
     }
     public function productdrink() {
         // $product = auth()->product()->id;
         // $data = Uploads::where('id', $product)->first();
         // return view('food', 'drink', compact('data'));
-        $data = Product::all();
+        $data = Product::where('kategori', 2)->get();
         return view('drink', compact('data'));
     }
     public function cart()
@@ -94,23 +95,23 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
-    public function update(Request $request)
+    // public function update(Request $request)
 
-    {
+    // {
 
-        if($request->id && $request->quantity){
+    //     if($request->id && $request->quantity){
 
-            $cart = session()->get('cart');
+    //         $cart = session()->get('cart');
 
-            $cart[$request->id]["quantity"] = $request->quantity;
+    //         $cart[$request->id]["quantity"] = $request->quantity;
 
-            session()->put('cart', $cart);
+    //         session()->put('cart', $cart);
 
-            session()->flash('success', 'Cart updated successfully');
+    //         session()->flash('success', 'Cart updated successfully');
 
-        }
+    //     }
 
-    }
+    // }
     public function remove($id, Request $request)
 
     {
@@ -125,7 +126,77 @@ class ProductController extends Controller
     }
     public function favourite()
     {
-        return view('favourite');
+        $user = auth()->user()->id;
+        $product = Favourite::where('user_id', $user)->get();
+        return view('favourite', ['favouriteList' => $product]);
+    }
+    public function addTofavourite($id)
+
+    {
+    
+        $user = auth()->user()->id;
+        $product = Product::findOrFail($id);
+        Favourite::create([
+            'ID_PRODUCT'=>$product->id,
+            'nama'=>$product->nama_product,
+            'gambar'=>$product->gambar,
+            'harga'=>$product->harga,
+            'user_id'=>$user,
+            'qty'=>1,
+        ]);
+
+
+          
+
+        $favourite = session()->get('favourite', []);
+
+  
+
+        if(isset($cart[$id])) {
+
+            $favourite[$id]['quantity']++;
+
+        } else {
+
+            $favourite[$id] = [
+
+                "name" => $product->nama_product,
+
+                "quantity" => 1,
+
+                "price" => $product->harga,
+
+                "image" => $product->gambar,
+
+            ];
+           
+
+        }
+
+          
+
+        session()->put('favourite', $favourite);
+        
+
+        return redirect()->back()->with('success', 'Product added to favourite successfully!');
+
+    }
+    public function removefavourite($id, Request $request)
+
+    {
+        $productId = $request->input('id');
+    
+    // Logic to remove the product from the cart
+    Favourite::where('id', $id)->delete();
+    
+    // Redirect back to the cart page or any other appropriate page
+    return redirect()->route('favourite');
+
+    }
+    public function show($id)
+    {
+        $product = Product::find($id);
+        return view('show', compact('product'));
     }
 
 }

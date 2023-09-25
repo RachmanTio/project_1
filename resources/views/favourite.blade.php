@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>CART</title>
+    <title>FAVOURITE</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -45,7 +45,7 @@
     <ol>
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
-      <table id="cart" class="table table-hover table-condensed">
+      <table id="favourite" class="table table-hover table-condensed">
 
         <thead>
     
@@ -53,7 +53,7 @@
     
                 <th style="width:50%">Product</th>
     
-                <th style="width:10%">Price</th>
+                <th style="width:50%">Price</th>
     
                 <th style="width:10%"></th>
     
@@ -61,12 +61,12 @@
     
           </thead>
           <tbody>
-            {{-- @php $total = 0 @endphp
+            @php $total = 0 @endphp
 
-            @if(session('cart')) --}}
+            @if(session('favourite'))
     
                 {{-- @foreach(session('cart') as $id => $details) --}}
-                {{-- @foreach($productList as $id => $details)
+                @foreach($favouriteList as $id => $details)
     
                     @php $total += intval($details->harga) * intval($details->qty) @endphp
     
@@ -88,17 +88,18 @@
     
                         </td>
     
-    
+                        <td data-th="Price">Rp{{ $details->harga }}</td>
+        
                         <td class="actions" data-th="">
     
-                            <button class="btn btn-danger btn-sm remove-from-cart"row-id='{{$details->id}}'>HAPUS</button>
+                            <button class="btn btn-danger btn-sm remove-from-favourite"row-id='{{$details->id}}'>HAPUS</button>
     
                         </td>
     
                     </tr>
     
                 @endforeach
-            @endif --}}
+            @endif
           </tbody>
           <tfoot>
     
@@ -157,7 +158,7 @@
 
   
 
-    $(".remove-from-cart").click(function (e) {
+    $(".remove-from-favourite").click(function (e) {
       let rowid = $(this).attr('row-id');
         e.preventDefault();
 
@@ -171,7 +172,7 @@
 
             $.ajax({
 
-                url: '{{ url('remove-from-cart') }}' + '/' + rowid,
+                url: '{{ url('remove-from-favourite') }}' + '/' + rowid,
 
 
                 method: "post",

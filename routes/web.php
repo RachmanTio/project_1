@@ -21,29 +21,41 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::get('/', function () {
     return view('login');
 });
-Route::get('food', [UserController::class, 'food'])->name('food');
-Route::get('drink', [UserController::class, 'drink'])->name('drink');
+//register 
 Route::post('register', [UserController::class, 'actionregister'])->name('actionregister');
 Route::get('register', [UserController::class, 'register'])->name('register');
+// login
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login_action');
+// change password old
 Route::get('password', [UserController::class, 'password'])->name('password');
 Route::post('password', [UserController::class, 'password_action'])->name('password.action');
+// view profil
 Route::get('profil', [userController::class, 'tampilkanProfil'])->name('profil');
+//view food and drink
+Route::get('food', [UserController::class, 'food'])->name('food');
+Route::get('drink', [UserController::class, 'drink'])->name('drink');
 Route::get('food', [ProductController::class, 'product'])->name('food');
 Route::get('drink', [ProductController::class, 'productdrink'])->name('drink');
-// Route::get('home', [UserController::class, 'home'])->name('home');
+// edit profil
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
 Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
+//change password
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 
 Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
+//keranjang
 Route::get('cart', [ProductController::class, 'cart'])->name('cart');
 Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
 Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
 Route::post('remove-from-cart/{id}', [ProductController::class, 'remove'])->name('remove.from.cart');
+//favorit
 Route::get('favourite', [ProductController::class, 'favourite'])->name('favourite');
+Route::get('add-to-favourite/{id}', [ProductController::class, 'addTofavourite'])->name('add.to.favourite');
+Route::post('remove-from-favourite/{id}', [ProductController::class, 'removefavourite'])->name('remove.from.favourite');
+//detail produk
+Route::get('products/{id}', [ProductController::class, 'show'])->name('show');
 Route::middleware('auth')->group( function () {
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::get('home', [UserController::class, 'home'])->name('home');
