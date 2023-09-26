@@ -33,9 +33,9 @@ Route::post('password', [UserController::class, 'password_action'])->name('passw
 // view profil
 Route::get('profil', [userController::class, 'tampilkanProfil'])->name('profil');
 //view food and drink
-Route::get('food', [UserController::class, 'food'])->name('food');
-Route::get('drink', [UserController::class, 'drink'])->name('drink');
-Route::get('food', [ProductController::class, 'product'])->name('food');
+// Route::get('food', [UserController::class, 'food'])->name('food');
+// Route::get('drink', [UserController::class, 'drink'])->name('drink');
+Route::get('food/{s_query}', [ProductController::class, 'product'])->name('food');
 Route::get('drink', [ProductController::class, 'productdrink'])->name('drink');
 // edit profil
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
@@ -56,6 +56,9 @@ Route::get('add-to-favourite/{id}', [ProductController::class, 'addTofavourite']
 Route::post('remove-from-favourite/{id}', [ProductController::class, 'removefavourite'])->name('remove.from.favourite');
 //detail produk
 Route::get('products/{id}', [ProductController::class, 'show'])->name('show');
+//search
+Route::get('search/{status?}/{show_result?}/{s_query?}}', [ProductController::class, 'product'])->name('search');
+Route::get('hasil', [ProductController::class, 'hasil'])->name('hasil');
 Route::middleware('auth')->group( function () {
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::get('home', [UserController::class, 'home'])->name('home');

@@ -16,7 +16,7 @@
             <a class="navbar-brand" >WebSiteName</a>
           </div>
           <ul class="nav navbar-nav">
-            <li><a href="{{route('food', 0)}}">FOOD</a></li>
+            <li><a href="/food">FOOD</a></li>
             <li><a href="/drink">DRINK</a></li>
             <li><a href="/profil">PROFIL</a></li>
           </ul>
@@ -65,6 +65,5 @@
     </div>
     <br>
     </section>
-    
 </body>
 </html>

@@ -10,37 +10,32 @@
 </head>
 <body>
     <section style="background-color: #eee;">
-      <nav class="navbar navbar-default">
+      <nav class="navbar navbar-inverse">
         <div class="container-fluid">
           <div class="navbar-header">
-            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-              <span class="sr-only">Toggle navigation</span>
-              <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="/">KEDAI JOS</a>
+            <a class="navbar-brand" >WebSiteName</a>
           </div>
-          <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
-            <ul class="nav navbar-nav">				
-              <li><a href="/food">FOOD</a></li>
-              <li><a href="/drink">DRINK</a></li>
-              <li><a href="/profil">PROFIL</a></li>
-              <li class="dropdown">
-            </ul>
-            <form class="navbar-form navbar-left" role="search">
-              <div class="form-group">
-                <input type="text" class="form-control" placeholder="Search">
-              </div>
-              <button type="submit" class="btn btn-default">Submit</button>
-            </form>
-            <ul class="nav navbar-nav navbar-right">
-              <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
-              <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
-              <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
-              <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
-            </ul>
-          </div><!-- /.navbar-collapse -->
+          <ul class="nav navbar-nav">
+            <li><a href="/food">FOOD</a></li>
+            <li><a href="/drink">DRINK</a></li>
+            <li><a href="/profil">PROFIL</a></li>
+          </ul>
+          <form class="navbar-form navbar-left" action="/action_page.php">
+            <div class="form-group">
+              <input type="text" class="form-control" placeholder="Search">
+            </div>
+            <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+          <ul class="nav navbar-nav navbar-right">
+            <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
+            <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
+            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+          </ul>
         </div>
-        <div class="container">
+      </nav>
+        <br>
+        <div class="container" style="background-color: #eee;">
             <div class="row justify-content-center">
                 <div class="col-md-8">
                     <div class="card">
