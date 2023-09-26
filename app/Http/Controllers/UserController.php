@@ -121,7 +121,7 @@ class UserController extends Controller
 
         public function editProfile(){
             $user = auth()->user()->id;
-            $data = Uploads::all();
+            $data = Uploads::where('id', $user)->first();
             return view('profile', compact('data'));
         }
     }

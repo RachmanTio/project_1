@@ -4,6 +4,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
+use App\Http\Controllers\ProductController;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +20,20 @@ use App\Http\Controllers\Auth\ForgotPasswordController;
 Route::get('/', function () {
     return view('login');
 });
+
+Route::get('favourite', [ProductController::class, 'favourite'])->name('favourite');
+Route::get('add-to-favourite/{id}', [ProductController::class, 'addTofavourite'])->name('add.to.favourite');
+Route::post('remove-from-favourite/{id}', [ProductController::class, 'removefavourite'])->name('remove.from.favourite');
+
+
+Route::post('remove-from-cart/{id}', [ProductController::class, 'remove'])->name('remove.from.cart');
+Route::get('cart', [ProductController::class, 'cart'])->name('cart');
+Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
+// Route::patch('update-cart', [ProductController::class, 'update'])->name('update.cart');
+Route::post('remove-from-cart/{id}', [ProductController::class, 'remove'])->name('remove.from.cart');
+
+
+Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
 Route::get('home', [UserController::class, 'login'])->name('login');
 
 Route::post('register', [UserController::class, 'actionregister'])->name('actionregister');
@@ -33,8 +48,6 @@ Route::post('login', [UserController::class, 'login_action'])->name('login_actio
 
 Route::get('food', [ProductController::class, 'product'])->name('food');
 Route::get('drink', [ProductController::class, 'productdrink'])->name('drink');
-Route::get('food', [UserController::class, 'food'])->name('food');
-Route::get('drink', [UserController::class, 'drink'])->name('drink');
 
 Route::get('forget-password', [ForgotPasswordController::class, 'showForgetPasswordForm'])->name('forget.password.get');
 Route::post('forget-password', [ForgotPasswordController::class, 'submitForgetPasswordForm'])->name('forget.password.post'); 

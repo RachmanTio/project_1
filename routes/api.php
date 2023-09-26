@@ -3,6 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
+use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RegisterController;
 
 /*
@@ -22,8 +23,9 @@ use App\Http\Controllers\API\RegisterController;
 
 // Route::post('forget-password', [RegisterController::class, 'forgetpassword']);
 
-Route::get('edit_profil', [RegisterController::class, 'user_profile']);
 
+Route::get('drink', [ProductController::class, 'drink_action']);
+Route::get('edit_profil', [RegisterController::class, 'user_profile']);
 Route::get('data_profil', [UserController::class, 'profil']);
 Route::get('userlist', [UserController::class, 'index']);
 Route::post('register', [RegisterController::class, 'register']);
@@ -33,5 +35,11 @@ Route::middleware('auth:api')->group( function () {
     // Route::get('userlist', [UserController::class, 'index']);
     Route::get('data_profil', [UserController::class, 'profil']);
     Route::post('user_profile', [RegisterController::class, 'user_profile']);
+    Route::post('produk', [ProductController::class, 'produk_action']);
+    Route::post('favourite', [ProductController::class, 'favourite_action']);
+    Route::get('drink', [ProductController::class, 'drink_action']);
+    Route::get('food', [ProductController::class, 'food_action']);
+    Route::post('hapus', [ProductController::class, 'hapus_action']);
+    Route::post('delete', [ProductController::class, 'delete_action']);
 
 });
