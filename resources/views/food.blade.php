@@ -16,7 +16,7 @@
           </div>
           <ul class="nav navbar-nav">
             <li><a href="{{route('food', 0)}}">FOOD</a></li>
-            <li><a href="/drink">DRINK</a></li>
+            <li><a href="{{route('drink', 0)}}">DRINK</a></li>
             <li><a href="/profil">PROFIL</a></li>
           </ul>
           <form class="navbar-form navbar-left" action="#" method="GET" >
@@ -28,8 +28,8 @@
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
             <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
-            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
-            <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+            <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>
+            <li><a href="{{route('logout')}}"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
           </ul>
         </div>
       </nav>

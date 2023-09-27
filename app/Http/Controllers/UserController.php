@@ -53,7 +53,7 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/food');
+            return redirect()->intended('/food/0');
         }
 
         return back()->withErrors([
@@ -122,6 +122,14 @@ class UserController extends Controller
             $user = auth()->user()->id;
             $data = Uploads::where('id', $user)->first();
             return view('profil', compact('data'));
+        }
+        public function logout(Request $request) 
+        {
+            Auth::logout();
+            $request->session()->invalidate();
+            $request->session()->regenerateToken();
+
+            return redirect('/login');
         }
         //  else{
         //      echo'Gagal ';

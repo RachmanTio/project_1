@@ -24,16 +24,16 @@ class ProductController extends Controller
         // return view('food', compact('data'));
         
 
-         if ($s_query == '0') {
-            $s_query = null;
-         }else{
-            $s_query = $s_query;
-         }
+        //  if ($s_query == '0') {
+        //     $s_query = null;
+        //  }else{
+        //     $s_query = $s_query;
+        //  }
 
         //dd($status);
         $post = Product::query()->where('kategori', 1);
 
-        if (isset($dt)) {
+        if ($dt!=0) {
             $post = $post->where(function($query) use ($dt) {
                 if ($dt !== null) {
                     $query->where(function($query) use ($dt) {
@@ -45,18 +45,49 @@ class ProductController extends Controller
 
 
         $data = $post->get();
-        
+        // dd($data);
         return view('food', compact('data', 's_query'));
 
        // return view('admin.media.index', compact('post', 's_query'));
     
     }
-    public function productdrink() {
+    public function productdrink($s_query = null) {
+        // dd(request()->s_query);
+        $dt = request()->s_query;
+        
         // $product = auth()->product()->id;
         // $data = Uploads::where('id', $product)->first();
         // return view('food', 'drink', compact('data'));
-        $data = Product::where('kategori', 2)->get();
-        return view('drink', compact('data'));
+        // $data = Product::where('kategori', 1)->get();
+        // return view('food', compact('data'));
+        
+
+        //  if ($s_query == '0') {
+        //     $s_query = null;
+        //  }else{
+        //     $s_query = $s_query;
+        //  }
+
+        //dd($status);
+        $post = Product::query()->where('kategori', 2);
+
+        if ($dt!=0) {
+            $post = $post->where(function($query) use ($dt) {
+                if ($dt !== null) {
+                    $query->where(function($query) use ($dt) {
+                        $query->where('nama_product', 'like', '%'.$dt.'%');
+                    });
+                }
+            });
+        }
+
+
+        $data = $post->get();
+        // dd($data);
+        return view('drink', compact('data', 's_query'));
+
+       // return view('admin.media.index', compact('post', 's_query'));
+    
     }
     public function cart()
     {
@@ -231,15 +262,57 @@ class ProductController extends Controller
     }
     public function search($id)
     {
-        dd($id);
         $keyword = $request->search;
         
         $users = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
-        return view('show', compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
+        return view('/show', compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
     public function hasil()
     {
         return view('hasil');
     }
+    public function checkout()
+    {
+        $user = auth()->user()->id;
+        $product = Keranjang::findOrFail($id);
+        Order::create([
+            'user_id'=>$user,
+            'ID_PRODUCT'=>$product->id,
+            'total'=>$product->harga * $product->qty,
+        ]);
+
+        $checkout = session()->get('checkout', []);
+        if(isset($cart[$id])) {
+
+            $cart[$id]['quantity']++;
+
+        } else {
+
+            $cart[$id] = [
+
+                "name" => $product->nama_product,
+
+                "quantity" => 1,
+
+                "price" => $product->harga,
+
+                "image" => $product->gambar,
+
+            ];
+           
+
+        }
+
+          
+
+        session()->put('checkout', $checkout);
+        
+
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+
+    }
+
 
 }
+
+

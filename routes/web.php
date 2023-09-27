@@ -27,16 +27,20 @@ Route::get('register', [UserController::class, 'register'])->name('register');
 // login
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login_action');
+
 // change password old
 Route::get('password', [UserController::class, 'password'])->name('password');
 Route::post('password', [UserController::class, 'password_action'])->name('password.action');
-// view profil
+Route::middleware('auth')->group( function () {
+    Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
+    // logout
+    Route::get('/logout', [UserController::class, 'logout'])->name('logout');
+    Route::get('home', [UserController::class, 'home'])->name('home');
+    // view profil
 Route::get('profil', [userController::class, 'tampilkanProfil'])->name('profil');
 //view food and drink
-// Route::get('food', [UserController::class, 'food'])->name('food');
-// Route::get('drink', [UserController::class, 'drink'])->name('drink');
 Route::get('food/{s_query}', [ProductController::class, 'product'])->name('food');
-Route::get('drink', [ProductController::class, 'productdrink'])->name('drink');
+Route::get('drink/{s_query}', [ProductController::class, 'productdrink'])->name('drink');
 // edit profil
 Route::get('profile', [UserController::class, 'profile'])->name('profile');
 Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
@@ -59,9 +63,6 @@ Route::get('products/{id}', [ProductController::class, 'show'])->name('show');
 //search
 Route::get('search/{status?}/{show_result?}/{s_query?}}', [ProductController::class, 'product'])->name('search');
 Route::get('hasil', [ProductController::class, 'hasil'])->name('hasil');
-Route::middleware('auth')->group( function () {
-    Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
-    Route::get('home', [UserController::class, 'home'])->name('home');
 });
 
 
