@@ -70,10 +70,20 @@ class ProductController extends BaseController
 
     }
 
-    public function hapus_action(Request $request
-    ){
+    public function hapus_action(Request $request){
         Keranjang::where('id', $request->id)->delete();
         return $this->sendResponse('succes', 'Products retrieved successfully.');
+    }
+    
+    public function pencarian(Request $request)
+    {
+        // dd($request->all());
+        // return $this->sendResponse($request->all(), 'Products retrieved successfully.');
+        $user = auth()->user()->id;
+        
+        $product = Product::where('nama_product', 'like', "%" . $request->nama . "%")->get();
+
+        return $this->sendResponse($product, 'Products retrieved successfully.');
     }
 
 }

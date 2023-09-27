@@ -31,6 +31,13 @@ class UserController extends BaseController
         return $this->sendResponse($users, 'Products retrieved successfully.');
     }
 
+    public function logout_action(Request $request)
+    {
+        $request->user()->tokens()->delete();
+
+        return response()->json([$request => 'Berhasil logout']);
+    }
+
     // public function data_register()
     // {
     //     $user = auth()->user()->id;

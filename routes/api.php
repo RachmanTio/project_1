@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RegisterController;
+use App\Models\User;
 
 /*
 |--------------------------------------------------------------------------
@@ -41,5 +42,8 @@ Route::middleware('auth:api')->group( function () {
     Route::get('food', [ProductController::class, 'food_action']);
     Route::post('hapus', [ProductController::class, 'hapus_action']);
     Route::post('delete', [ProductController::class, 'delete_action']);
+    Route::get('search', [ProductController::class, 'pencarian']);
+    Route::post('token', [UserController::class, 'logout_action']);
+
 
 });

@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>CART</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <section style="background-color: #eee;">
+        <nav class="navbar navbar-default">
+          <div class="container-fluid">
+            <div class="navbar-header">
+              <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+              </button>
+              <a class="navbar-brand" href="/">KEDAI JOS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+              <ul class="nav navbar-nav">
+                <li><a href="/food">FOOD</a></li>				
+                <li><a href="/drink">DRINK</a></li>
+                <li><a href="/profil">PROFIL</a></li>
+                <li class="dropdown">
+              </ul>
+              <form class="navbar-form navbar-left" role="search">
+                <div class="form-group">
+                  <input type="text" class="form-control" placeholder="Search">
+                </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+              <ul class="nav navbar-nav navbar-right">
+                <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
+                <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
+                <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Daftar</a></li>
+                <li><a href="/login"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>
+              </ul>
+            </div><!-- /.navbar-collapse -->
+          </div>
+        </nav>
+    <div class="container">
+        <div class="row" >
+            <div class="col-md-6" >
+                <img src="{{asset('')  . $product->gambar}}" alt="{{$product->nama_product}}" height="300" width="400" class="img-fluid" >
+            </div>
+            <div class="col-md-6">
+                <h1>{{$product->nama_product}}</h1>
+                {{-- <p class="text-muted">Kategori: {{ $product->category }}</p> --}}
+                <h3 class="text-success">Rp {{$product->harga}}</h3>
+                <p>{{$product->deskripsi}}</p>
+                <div class="mt-4">
+                  <a class="btn btn-warning btn-md"
+                  href="{{ route('add.to.cart', $product->id) }}" role="button">
+                  <i class="fab fa-whatsapp"></i> Add To Cart    
+                  </a>
+                  <a class="btn btn-info btn-md"
+                  href="{{ route('add.to.favourite', $product->id) }}" role="button">
+                  <i class="fab fa-whatsapp"></i> Add To Favourite    
+                  </a>
+                  <a class="btn btn-success btn-md"
+                  href="/food/0" role="button">
+                  <i class="fab fa-whatsapp"></i> BACK   
+                  </a>  
+                    <br>
+                    <br>
+                </div>
+            </div>
+        </div>
+    </div>
+    <br>
+    </section>
+</body>
+</html>

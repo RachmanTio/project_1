@@ -198,7 +198,7 @@ class RegisterController extends BaseController
                 'username' => $request->username,
                 'email' => $request->email,
                 'jeniskelamin' => $request->jeniskelamin,
-                'gambar' =>  url('gambar').'/'.$gambar,
+                'gambar' =>  $gambar,
                 'alamat' => $request->alamat,
                 'tanggallahir' => $request->tanggallahir,
             ]);
