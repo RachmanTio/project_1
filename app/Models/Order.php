@@ -13,5 +13,6 @@ class Order extends Model
         'user_id',
         'ID_PRODUCT',
         'total',
+        'gambar',
     ];
 }

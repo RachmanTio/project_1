@@ -274,21 +274,30 @@ class ProductController extends Controller
     public function checkout()
     {
         $user = auth()->user()->id;
+        $product = Order::where('user_id', $user)->get();
+        // dd($product);
+        // dd($product);
+        return view('checkout', ['checkouttList' => $product]);
+    }
+    public function addtocheckout($id)
+    {
+        $user = auth()->user()->id;
         $product = Keranjang::findOrFail($id);
         Order::create([
             'user_id'=>$user,
             'ID_PRODUCT'=>$product->id,
             'total'=>$product->harga * $product->qty,
+            'gambar'=>$product->gambar,
         ]);
 
         $checkout = session()->get('checkout', []);
-        if(isset($cart[$id])) {
+        if(isset($checkout[$id])) {
 
-            $cart[$id]['quantity']++;
+            $checkout[$id]['quantity']++;
 
         } else {
 
-            $cart[$id] = [
+            $checkout[$id] = [
 
                 "name" => $product->nama_product,
 

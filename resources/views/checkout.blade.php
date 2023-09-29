@@ -58,7 +58,7 @@
           <tbody>
             @php $total = 0 @endphp
 
-            @if(session('cart'))
+            @if(session('checkout'))
     
                 {{-- @foreach(session('cart') as $id => $details) --}}
                 @foreach($productList as $id => $details)
@@ -113,7 +113,7 @@
     
                     <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
     
-                    <a  href="{{ route('addtocheckout', $productList->id) }}"> <button class="btn btn-success">Checkout</button> </a>
+                    <button class="btn btn-success">Checkout</button>
     
                 </td>
     
@@ -207,15 +207,6 @@
   
 
 </script>
-
-{{-- @endsection --}}
-      
-    {{-- @endsection --}}
-    {{-- @endforeach --}}
-
-
-
-
     </ol>
 </body>
 </html>
