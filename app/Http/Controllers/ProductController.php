@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use auth;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Uploads;
 use App\Models\Favourite;

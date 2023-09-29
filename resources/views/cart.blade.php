@@ -113,7 +113,7 @@
     
                     <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
     
-                    <a  href="{{ route('addtocheckout', $productList->id) }}"> <button class="btn btn-success">Checkout</button> </a>
+                    <a  href="{{ route('addtocheckout', $details->id) }}"> <button class="btn btn-success">Checkout</button> </a>
     
                 </td>
     
