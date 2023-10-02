@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>FAVOURITE</title>
+    <title>ORDER SELESAI</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -35,7 +35,7 @@
         </div>
       </nav>
     </section>
-    <h2 class="text-center">MAKANAN FAVORIT ANDA</h3>
+    <h2 class="text-center">ORDER SELESAI</h3>
     <ol>
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
@@ -101,7 +101,7 @@
     
                 <td colspan="5" class="text-right">
     
-                    <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                    {{-- <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a> --}}
         
                 </td>
     
@@ -152,45 +152,45 @@
 
   
 
-    $(".remove-from-favourite").click(function (e) {
-      let rowid = $(this).attr('row-id');
-        e.preventDefault();
+    // $(".remove-from-favourite").click(function (e) {
+    //   let rowid = $(this).attr('row-id');
+    //     e.preventDefault();
 
   
 
-        var ele = $(this);
+    //     var ele = $(this);
 
   
 
-        if(confirm("Are you sure want to remove?")) {
+    //     if(confirm("Are you sure want to remove?")) {
 
-            $.ajax({
+    //         $.ajax({
 
-                url: '{{ url('remove-from-favourite') }}' + '/' + rowid,
+    //             url: '{{ url('remove-from-favourite') }}' + '/' + rowid,
 
 
-                method: "post",
+    //             method: "post",
 
-                data: {
+    //             data: {
 
-                    _token: '{{ csrf_token() }}', 
+    //                 _token: '{{ csrf_token() }}', 
 
-                    id: rowid
+    //                 id: rowid
                     
 
-                },
+    //             },
 
-                success: function (response) {
+    //             success: function (response) {
 
-                    window.location.reload();
+    //                 window.location.reload();
 
-                }
+    //             }
 
-            });
+    //         });
 
-        }
+    //     }
 
-    });
+    // });
 
   
 

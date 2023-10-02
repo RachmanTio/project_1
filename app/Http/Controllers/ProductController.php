@@ -283,43 +283,51 @@ class ProductController extends Controller
     public function addtocheckout($id)
     {
         $user = auth()->user()->id;
-        $product = Keranjang::findOrFail($id);
-        Order::create([
-            'user_id'=>$user,
-            'ID_PRODUCT'=>$product->id,
-            'total'=>$product->harga * $product->qty,
-            'gambar'=>$product->gambar,
-        ]);
+        $product = Keranjang::where('user_id', $user)->get();
+        foreach ($product as $key => $value) {
+            Order::create([
+                'user_id'=>$user,
+                'ID_PRODUCT'=>$value->id,
+                'total'=>$value->harga * $value->qty,
+                'gambar'=>$value->gambar,
+                'nama'=>$value->nama,
+            ]);
+        }
+        
 
-        $checkout = session()->get('checkout', []);
-        if(isset($checkout[$id])) {
+        // $checkout = session()->all('checkout', []);
+        // if(isset($checkout[$id])) {
 
-            $checkout[$id]['quantity']++;
+        //     $checkout[$id]['quantity']++;
 
-        } else {
+        // } else {
 
-            $checkout[$id] = [
+        //     $checkout[$id] = [
 
-                "name" => $product->nama_product,
+        //         "name" => $product->nama_product,
 
-                "quantity" => 1,
+        //         "quantity" => 1,
 
-                "price" => $product->harga,
+        //         "price" => $product->harga,
 
-                "image" => $product->gambar,
+        //         "image" => $product->gambar,
 
-            ];
+        //     ];
            
 
-        }
+        // }
 
           
 
-        session()->put('checkout', $checkout);
+        // session()->put('checkout', $checkout);
         
 
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
+    }
+    public function orderproses()
+    {
+        return view('orderproses');
     }
 
 

@@ -53,7 +53,14 @@ class UserController extends Controller
         ]);
         if (Auth::attempt(['email' => $request->email, 'password' => $request->password])) {
             $request->session()->regenerate();
-            return redirect()->intended('/food/0');
+            $user = auth()->user();
+            if($user->is_admin == 1){
+                return redirect()->route('adminhome')->with('success','You are Logged in sucessfully.');
+            }
+            else {
+                return redirect()->intended('/food/0');
+            }
+            // return redirect()->intended('/food/0');
         }
 
         return back()->withErrors([

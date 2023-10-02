@@ -35,6 +35,7 @@
         </div>
       </nav>
     </section>
+    <h2 class="text-center">MAKANAN DALAM KERANJANG</h3>
     <ol>
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
@@ -112,8 +113,11 @@
                 <td colspan="5" class="text-right">
     
                     <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-    
+                    
+                    @if (isset($details))
                     <a  href="{{ route('addtocheckout', $details->id) }}"> <button class="btn btn-success">Checkout</button> </a>
+                    @endif
+                    
     
                 </td>
     

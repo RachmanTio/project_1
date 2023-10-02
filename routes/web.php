@@ -3,6 +3,7 @@
 // use auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\Auth\ForgotPasswordController;
 
@@ -27,7 +28,9 @@ Route::get('register', [UserController::class, 'register'])->name('register');
 // login
 Route::get('login', [UserController::class, 'login'])->name('login');
 Route::post('login', [UserController::class, 'login_action'])->name('login_action');
-
+// login admin
+Route::get('loginadmin', [AdminController::class, 'loginadmin'])->name('loginadmin');
+Route::post('loginadmin', [AdminController::class, 'login_actionadmin'])->name('login_actionadmin');
 // change password old
 Route::get('password', [UserController::class, 'password'])->name('password');
 Route::post('password', [UserController::class, 'password_action'])->name('password.action');
@@ -37,6 +40,9 @@ Route::post('password', [UserController::class, 'password_action'])->name('passw
  Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showResetPasswordForm'])->name('reset.password.get');
  Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 Route::middleware('auth')->group( function () {
+    // View Admin
+    Route::get('adminhome', [AdminController::class, 'adminhome'])->name('adminhome');
+    // Cara menampilkan data user
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     // logout
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
@@ -67,6 +73,12 @@ Route::middleware('auth')->group( function () {
     //checkout
     Route::get('checkout', [ProductController::class, 'checkout'])->name('checkout');
     Route::get('addtocheckout/{id}', [ProductController::class, 'addtocheckout'])->name('addtocheckout');
+    //Order Proses
+    Route::get('orderproses', [ProductController::class, 'orderproses'])->name('orderproses');
+    //Order Di Kirim
+    Route::get('orderkirim', [ProductController::class, 'orderkirim'])->name('kirim');
+    //Order Batal
+    Route::get('orderbatal', [ProductController::class, 'orderbatal'])->name('orderbatal');
 
 
 

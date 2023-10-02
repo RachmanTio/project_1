@@ -31,6 +31,7 @@ class User extends Authenticatable
         'jeniskelamin',
         'alamat',
         'gambar',
+        'is_admin',
     ];
 
     /**

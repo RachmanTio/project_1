@@ -14,5 +14,7 @@ class Order extends Model
         'ID_PRODUCT',
         'total',
         'gambar',
+        'status',
+        'nama',
     ];
 }
