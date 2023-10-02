@@ -35,7 +35,7 @@ class UserController extends BaseController
     {
         $request->user()->tokens()->delete();
 
-        return response()->json([$request => 'Berhasil logout']);
+        return response()->json(['message' => 'Berhasil logout']);
     }
 
     // public function data_register()

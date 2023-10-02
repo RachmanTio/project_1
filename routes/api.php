@@ -6,6 +6,7 @@ use App\Http\Controllers\API\UserController;
 use App\Http\Controllers\API\ProductController;
 use App\Http\Controllers\API\RegisterController;
 use App\Models\User;
+use GuzzleHttp\Middleware;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,6 +45,8 @@ Route::middleware('auth:api')->group( function () {
     Route::post('delete', [ProductController::class, 'delete_action']);
     Route::get('search', [ProductController::class, 'pencarian']);
     Route::post('token', [UserController::class, 'logout_action']);
+    Route::post('checkout_barang', [ProductController::class, 'checkout']);
+    
 
 
 });

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
 use App\Models\Keranjang;
+use App\Models\Order;
 use App\Models\Product;
 use App\Models\Favourite;
 use Illuminate\Http\Request;
@@ -84,6 +85,23 @@ class ProductController extends BaseController
         $product = Product::where('nama_product', 'like', "%" . $request->nama . "%")->get();
 
         return $this->sendResponse($product, 'Products retrieved successfully.');
+    }
+
+    public function checkout(Request $request)
+    {
+        $user = auth()->user()->id;
+        $product = Keranjang::where('user_id', $user)->get();
+        // return $this->sendResponse($product, 'Products retrieved successfully.');
+        foreach ($product as $key => $value) {
+            Order::create([
+                'user_id'=>$user,
+                'ID_PRODUCT'=>$value->id,
+                'total'=>$value->harga * $value->qty,
+                'gambar'=>$value->gambar,
+            ]);
+        }
+        return $this->sendResponse('succes', 'Products retrieved successfully.');
+
     }
 
 }

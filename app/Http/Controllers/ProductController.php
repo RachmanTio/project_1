@@ -6,6 +6,7 @@ use auth;
 use App\Models\Product;
 use App\Models\Uploads;
 use App\Models\Keranjang;
+use App\Models\Order;
 use App\Models\dataproduct;
 use Illuminate\Http\Request;
 use App\Models\Favourite;
@@ -218,6 +219,22 @@ class ProductController extends Controller
         
         $users = User::where('name', 'like', "%" . $keyword . "%")->paginate(5);
         return view('/show', compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
+    }
+
+    public function addtocheckout($id)
+    {
+        $user = auth()->user()->id;
+        $product = Keranjang::where('user_id', $user)->get();
+        foreach ($product as $key => $value) {
+            Order::create([
+                'user_id'=>$user,
+                'ID_PRODUCT'=>$value->id,
+                'total'=>$value->harga * $value->qty,
+                'gambar'=>$value->gambar,
+            ]);
+        }
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+
     }
 
 }

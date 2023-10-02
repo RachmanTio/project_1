@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>HOME</title>
+    <link rel="stylesheet" href="{{ asset('css/style.css') }}">
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
@@ -33,69 +34,23 @@
           </ul>
         </div>
       </nav>
-          <section style="background-color: #eee;">
-              <div class="row">
-                <div class="col-lg-4">
-                  <div class="card mb-4">
-                    <div class="card-body text-center">
-                      <img src="{{ asset('gambar') . '/' . $data->gambar }}" alt="avatar" height="150" width="300"
-                        class="rounded-circle img-fluid" style="width: 150px;">
-                      <h5 class="my-3">{{ $data->username }}</h5>
-                      <p class="text-muted mb-1">CUSTOMER</p>
-                      <p class="text-muted mb-4">DOMISILI, {{ $data->alamat }}</p>
-                    </div>
-                  </div>
-                </div>
-                <div class="col-lg-8">
-                  <div class="card mb-4">
-                    <div class="card-body">
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Username</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">{{ $data->username }}</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Email</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">{{ $data->email }}</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Date</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">{{ $data->tanggallahir }}</p>
-                        </div>
-                      </div>
-                      <hr>
-                      <div class="row">
-                        <div class="col-sm-3">
-                          <p class="mb-0">Gender</p>
-                        </div>
-                        <div class="col-sm-9">
-                          <p class="text-muted mb-0">{{ $data->jeniskelamin }}</p>
-                        </div>
-                      </div>
-                      <hr>
-                      </div>
-                      <hr>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </section>
-        @auth
-    <a class="btn btn-primary" href="/profile">EDIT</a>
-    @endauth
-    </section>
-</body>
-</html>
+      <div class="card">
+        <br>
+        <br>
+        <img src="{{ asset('gambar') . '/' . $data->gambar }}" alt="avatar" height="150" width="300"
+        class="rounded-circle img-fluid" style="width: 150px;">
+        <h2 style="text-align:center">{{ $data->username }}</h2>
+        <p>Email: {{ $data->email }}</p>
+        <p>Alamat: {{ $data->alamat }}</p>
+        <p>Date: {{ $data->tanggallahir }}</p>
+        <p>Gender: {{ $data->jeniskelamin }}</p>
+        <a class="btn btn-primary" href="/editProfile/{{ $data->id }}">EDIT</a>
+        <br>
+        <br>
+        <br>
+      </div>
+          @auth
+      @endauth
+      </section>
+  </body>
+  </html>

@@ -111,9 +111,10 @@
     
                 <td colspan="5" class="text-right">
     
-                    <a href="{{ url('') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-    
-                    <button class="btn btn-success">Checkout</button>
+                    <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
+                    @if (isset($details))
+                    <a  href="{{ route('addtocheckout', $details->id) }}"> <button class="btn btn-success">Checkout</button> </a>
+                    @endif
     
                 </td>
     

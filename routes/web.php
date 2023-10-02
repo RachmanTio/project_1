@@ -41,12 +41,7 @@ Route::get('reset-password/{token}', [ForgotPasswordController::class, 'showRese
 Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPasswordForm'])->name('reset.password.post');
 
 
-
-
-
-
 Route::middleware('auth')->group( function () {
-    Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::get('food/{s_query}', [ProductController::class, 'product'])->name('food');
     Route::get('drink/{s_query}', [ProductController::class, 'productdrink'])->name('drink');
     Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
@@ -60,10 +55,14 @@ Route::middleware('auth')->group( function () {
     Route::get('add-to-favourite/{id}', [ProductController::class, 'addTofavourite'])->name('add.to.favourite');
     Route::post('remove-from-favourite/{id}', [ProductController::class, 'removefavourite'])->name('remove.from.favourite');
     Route::get('search/{status?}/{show_result?}/{s_query?}}', [ProductController::class, 'product'])->name('search');
+
     Route::get('/logout', [UserController::class, 'logout'])->name('logout');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::get('profil', [userController::class, 'tampilkanProfil'])->name('profil');
+    Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
+    Route::get('checkout', [ProductController::class, 'checkout'])->name('checkout');
+    Route::get('addtocheckout/{id}', [ProductController::class, 'addtocheckout'])->name('addtocheckout');
 });
 
 
