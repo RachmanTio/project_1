@@ -42,6 +42,7 @@ Route::post('password', [UserController::class, 'password_action'])->name('passw
 Route::middleware('auth')->group( function () {
     // View Admin
     Route::get('adminhome', [AdminController::class, 'adminhome'])->name('adminhome');
+    Route::get('actionstatus', [AdminController::class, 'actionstatus'])->name('actionstatus');
     // Cara menampilkan data user
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     // logout
@@ -79,6 +80,12 @@ Route::middleware('auth')->group( function () {
     Route::get('orderkirim', [ProductController::class, 'orderkirim'])->name('kirim');
     //Order Batal
     Route::get('orderbatal', [ProductController::class, 'orderbatal'])->name('orderbatal');
+    //Admin Show
+    Route::get('order/{id}', [AdminController::class, 'adminshow'])->name('adminshow');
+    //Status POST
+    // Route::post('adminhome', [AdminController::class, 'actionstatus'])->name('actionstatus');
+
+
 
 
 

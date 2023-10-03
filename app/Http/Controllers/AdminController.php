@@ -40,6 +40,35 @@ class AdminController extends Controller
         $data = Order::all();
         return view('adminhome', compact('data'));
     }
+    public function adminshow($id)
+    {
+        $order = Order::find($id);
+        return view('adminshow', compact('order'));
+    }
+    public function actionstatus(Request $request)
+    {
+        // return dd($request->all());
+        // $order = Order::('id', $request->id)->first();
+
+        Order::where('id', $request->id)
+              ->update(['status' => $request->sellist1]);
+
+
+        // if ($request->hasfile('status')) {            
+        //     $status = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('status')->getClientOriginalName());
+        //     $request->file('status')->move(public_path('status'),$status);
+        // }
+        // $user = User::create([
+        //     'status' => $request->status,
+        //     'role' => $request->role,
+        //     'active' => 1
+        // ]);
+        
+
+
+        // Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan email dan password.');
+        return redirect('/adminhome');
+    }
 
     /**
      * Show the form for creating a new resource.
