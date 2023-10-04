@@ -27,6 +27,7 @@
           </form>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="/orderproses"><span class="glyphicon glyphicon-shopping-cart"></span> Proses</a></li>
+            <li><a href="/orderkirim"><span class="glyphicon glyphicon-shopping-cart"></span> Kirim</a></li>
             <li><a href="/favourite"><span class="glyphicon glyphicon-heart"></span></a></li>
             <li><a href="/cart"><span class="glyphicon glyphicon-shopping-cart"></span> Keranjang</a></li>
             <li><a href="/register"><span class="glyphicon glyphicon-user"></span> Register</a></li>

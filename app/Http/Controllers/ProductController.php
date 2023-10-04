@@ -49,7 +49,6 @@ class ProductController extends Controller
         // dd($data);
         return view('food', compact('data', 's_query'));
 
-       // return view('admin.media.index', compact('post', 's_query'));
     
     }
     public function productdrink($s_query = null) {
@@ -293,6 +292,7 @@ class ProductController extends Controller
                 'nama'=>$value->nama,
             ]);
         }
+         Keranjang::where('user_id', $user)->delete();
         
 
         // $checkout = session()->all('checkout', []);
@@ -327,7 +327,20 @@ class ProductController extends Controller
     }
     public function orderproses()
     {
-        return view('orderproses');
+        $user = auth()->user()->id;
+        // dd($user);
+        $post = Order::where('status', 'di proses');
+        // dd($post);
+        $data = $post->get();
+        //  dd($data);
+        return view('orderproses', ['orderList' => $data]);
+    }
+    public function orderkirim()
+    {
+        $user = auth()->user()->id;
+        $post = Order::where('status', 'di kirim');
+        $data = $post->get();
+        return view('orderkirim', ['orderList' => $data]);
     }
 
 

@@ -17,6 +17,7 @@ class addadmin extends Seeder
         \DB::table('tb_pengguna')->insert([
             [
                 'username' => 'admin',
+                'email' => 'admin@gmail.com',
                 'password' => 'admin',
                 'is_admin' => '1',
             ],

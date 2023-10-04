@@ -57,12 +57,13 @@
           <tbody>
             @php $total = 0 @endphp
 
-            @if(session('favourite'))
+            {{-- @if(session('orderproses')) --}}
     
                 {{-- @foreach(session('cart') as $id => $details) --}}
-                @foreach($favouriteList as $id => $details)
+                @foreach($orderList as $id => $details)
+              
     
-                    @php $total += intval($details->harga) * intval($details->qty) @endphp
+                    {{-- @php $total += intval($details->total) * intval($details->qty) @endphp --}}
     
                     <tr data-id="{{ $id }}">
     
@@ -70,7 +71,7 @@
     
                             <div class="row">
     
-                                <div class="col-sm-3 hidden-xs"><img src="{{ $details->gambar }}" width="100" height="50" class="img-responsive"/></div>
+                                <div class="col-sm-3 hidden-xs"><img src="{{asset('')  . $details->gambar }}" width="100" height="50" class="img-responsive"/></div>
     
                                 <div class="col-sm-9">
     
@@ -82,18 +83,12 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->harga }}</td>
-        
-                        <td class="actions" data-th="">
-    
-                            <button class="btn btn-danger btn-sm remove-from-favourite"row-id='{{$details->id}}'>HAPUS</button>
-    
-                        </td>
+                        <td data-th="Price">Rp{{ $details->total}}</td>
     
                     </tr>
     
                 @endforeach
-            @endif
+            {{-- @endif --}}
           </tbody>
           <tfoot>
     
