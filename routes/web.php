@@ -42,6 +42,9 @@ Route::post('reset-password', [ForgotPasswordController::class, 'submitResetPass
 
 
 Route::middleware('auth')->group( function () {
+
+    Route::get('adminhome', [AdminController::class, 'adminhome'])->name('adminhome');
+    Route::get('actionstatus', [AdminController::class, 'actionstatus'])->name('actionstatus');
     Route::get('food/{s_query}', [ProductController::class, 'product'])->name('food');
     Route::get('drink/{s_query}', [ProductController::class, 'productdrink'])->name('drink');
     Route::get('add-to-cart/{id}', [ProductController::class, 'addToCart'])->name('add.to.cart');
