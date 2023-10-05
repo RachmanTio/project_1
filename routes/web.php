@@ -78,8 +78,12 @@ Route::middleware('auth')->group( function () {
     Route::get('orderproses', [ProductController::class, 'orderproses'])->name('orderproses');
     //Order Di Kirim
     Route::get('orderkirim', [ProductController::class, 'orderkirim'])->name('kirim');
+    Route::get('addtoselesai/{id}', [ProductController::class, 'addtoselesai'])->name('addtoselesai');
     //Order Batal
+    Route::get('addtobatal/{id}', [ProductController::class, 'addtobatal'])->name('addtobatal');
     Route::get('orderbatal', [ProductController::class, 'orderbatal'])->name('orderbatal');
+    //Order Selesai
+    Route::get('orderselesai', [ProductController::class, 'orderselesai'])->name('orderselesai');
     //Admin Show
     Route::get('order/{id}', [AdminController::class, 'adminshow'])->name('adminshow');
     //Status POST

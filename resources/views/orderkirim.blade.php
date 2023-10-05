@@ -45,9 +45,9 @@
     
             <tr>
     
-                <th style="width:50%">Product</th>
+                <th style="width:70%">Product</th>
     
-                <th style="width:50%">Price</th>
+                <th style="width:30%">Price</th>
     
                 <th style="width:10%"></th>
     
@@ -83,6 +83,11 @@
                         </td>
     
                         <td data-th="Price">Rp{{ $details->total }}</td>
+
+                        <td class="actions" data-th="">
+
+                          <a  href="{{ route('addtoselesai', $details->id) }}"> <button class="btn btn-success">SELESAI</button> </a>                        
+                        </td>
     
                     </tr>
     

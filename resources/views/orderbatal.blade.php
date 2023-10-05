@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>ORDER BATAL</title>
+    <title>ORDER PROSES</title>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
     <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" rel="stylesheet">
 </head>
@@ -45,9 +45,9 @@
     
             <tr>
     
-                <th style="width:50%">Product</th>
+                <th style="width:70%">Product</th>
     
-                <th style="width:50%">Price</th>
+                <th style="width:30%">Price</th>
     
                 <th style="width:10%"></th>
     
@@ -56,13 +56,10 @@
           </thead>
           <tbody>
             @php $total = 0 @endphp
+                @foreach($orderList as $id => $details)
+              
+    
 
-            @if(session('favourite'))
-    
-                {{-- @foreach(session('cart') as $id => $details) --}}
-                @foreach($favouriteList as $id => $details)
-    
-                    @php $total += intval($details->harga) * intval($details->qty) @endphp
     
                     <tr data-id="{{ $id }}">
     
@@ -70,7 +67,7 @@
     
                             <div class="row">
     
-                                <div class="col-sm-3 hidden-xs"><img src="{{ $details->gambar }}" width="100" height="50" class="img-responsive"/></div>
+                                <div class="col-sm-3 hidden-xs"><img src="{{asset('')  . $details->gambar }}" width="100" height="50" class="img-responsive"/></div>
     
                                 <div class="col-sm-9">
     
@@ -82,18 +79,12 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->harga }}</td>
-        
-                        <td class="actions" data-th="">
-    
-                            <button class="btn btn-danger btn-sm remove-from-favourite"row-id='{{$details->id}}'>HAPUS</button>
-    
-                        </td>
+                        <td data-th="Price">Rp{{ $details->total}}</td>
     
                     </tr>
     
                 @endforeach
-            @endif
+            {{-- @endif --}}
           </tbody>
           <tfoot>
     

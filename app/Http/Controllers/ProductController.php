@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use auth;
+use App\Models\Batal;
 use App\Models\Order;
 use App\Models\Product;
+use App\Models\Selesai;
 use App\Models\Uploads;
 use App\Models\Favourite;
 use App\Models\Keranjang;
@@ -293,35 +295,6 @@ class ProductController extends Controller
             ]);
         }
          Keranjang::where('user_id', $user)->delete();
-        
-
-        // $checkout = session()->all('checkout', []);
-        // if(isset($checkout[$id])) {
-
-        //     $checkout[$id]['quantity']++;
-
-        // } else {
-
-        //     $checkout[$id] = [
-
-        //         "name" => $product->nama_product,
-
-        //         "quantity" => 1,
-
-        //         "price" => $product->harga,
-
-        //         "image" => $product->gambar,
-
-        //     ];
-           
-
-        // }
-
-          
-
-        // session()->put('checkout', $checkout);
-        
-
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
@@ -342,8 +315,56 @@ class ProductController extends Controller
         $data = $post->get();
         return view('orderkirim', ['orderList' => $data]);
     }
+    public function orderbatal()
+    {
+        $user = auth()->user()->id;
+        $post = Batal::where('status', 'di batalkan');
+        $data = $post->get();
+        return view('orderbatal', ['orderList' => $data]);
+    }
+    public function addtobatal($id)
+    {
+        
+        $user = auth()->user()->id;
+        $product = Keranjang::where('ID_PRODUCT', $id)->first();
+        Batal::create([
+            'user_id'=>$user,
+            'ID_PRODUCT'=>$product->id,
+            'total'=>$product->harga * $product->qty,
+            'gambar'=>$product->gambar,
+            'nama'=>$product->nama,
+            'status'=>'di batalkan',
+        ]);
 
+        Keranjang::where('ID_PRODUCT', $id)->delete();
+        return redirect()->route('cart');
+    }
+    public function orderselesai()
+    {
+        $user = auth()->user()->id;
+        $post = Selesai::where('status', 'selesai');
+        $data = $post->get();
+        return view('orderselesai', ['orderList' => $data]);
+    }
+    public function addtoselesai($id)
+    {
+        $user = auth()->user()->id;
+        $product = Order::findOrFail($id);
+        Selesai::create([
+            'user_id'=>$user,
+            'ID_PRODUCT'=>$product->id,
+            'total'=>$product->total,
+            'gambar'=>$product->gambar,
+            'nama'=>$product->nama,
+            'status'=>'selesai',
+        ]);
 
+        // Keranjang::where('user_id', $user)->delete();
+        return redirect()->back()->with('success', 'Product added to favourite successfully!');
+    }
 }
+    
+
+
 
 

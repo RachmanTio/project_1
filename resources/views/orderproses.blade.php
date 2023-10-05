@@ -45,9 +45,9 @@
     
             <tr>
     
-                <th style="width:50%">Product</th>
+                <th style="width:70%">Product</th>
     
-                <th style="width:50%">Price</th>
+                <th style="width:30%">Price</th>
     
                 <th style="width:10%"></th>
     

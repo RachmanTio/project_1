@@ -90,9 +90,13 @@
                         <td data-th="Subtotal" class="text-center">{{ intval($details->harga) * intval($details->qty) }}</td>
     
                         <td class="actions" data-th="">
-    
+                          
                             <button class="btn btn-danger btn-sm remove-from-cart"row-id='{{$details->id}}'>HAPUS</button>
-    
+                          
+                        </td>
+                        <td class="actions" data-th="">
+
+                          <a  href="{{ route('addtobatal', $details->ID_PRODUCT) }}"> <button class="btn btn-success">BATAL</button> </a>                        
                         </td>
     
                     </tr>
@@ -169,6 +173,45 @@
   
 
     $(".remove-from-cart").click(function (e) {
+      let rowid = $(this).attr('row-id');
+        e.preventDefault();
+
+  
+
+        var ele = $(this);
+
+  
+
+        if(confirm("Are you sure want to remove?")) {
+
+            $.ajax({
+
+                url: '{{ url('remove-from-cart') }}' + '/' + rowid,
+
+
+                method: "post",
+
+                data: {
+
+                    _token: '{{ csrf_token() }}', 
+
+                    id: rowid
+                    
+
+                },
+
+                success: function (response) {
+
+                    window.location.reload();
+
+                }
+
+            });
+
+        }
+
+    });
+    $(".remove-to-batal").click(function (e) {
       let rowid = $(this).attr('row-id');
         e.preventDefault();
 
