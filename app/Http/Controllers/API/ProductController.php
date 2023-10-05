@@ -22,7 +22,7 @@ class ProductController extends BaseController
     // $nama = $request->input('nama_product');
     // $gambar = $request->input('gambar');
     // $harga = $request->input('harga');
-    Keranjang::create([
+    $Keranjang = Keranjang::create([
         'ID_PRODUCT'=>$request->id,
         'nama'=>$request->nama,
         'gambar'=>$request->gambar,
@@ -31,14 +31,14 @@ class ProductController extends BaseController
         'qty'=>$request->qty,
     ]);
 
-    return response()->json(['message' => 'Produk berhasil ditambahkan ke keranjang']);
+    return $this->sendResponse($Keranjang, 'Products retrieved successfully.');
 
 
     }
 
     public function favourite_action(Request $request){
         $user = auth()->user()->id;
-        Favourite::create([
+        $Favourite = Favourite::create([
             'ID_PRODUCT'=>$request->id,
             'nama'=>$request->nama,
             'gambar'=>$request->gambar,
@@ -47,8 +47,7 @@ class ProductController extends BaseController
             'qty'=>$request->qty,
         ]);
 
-        return response()->json(['message' => 'Produk berhasil ditambahkan ke keranjang']);
-
+        return $this->sendResponse($Favourite, 'Products retrieved successfully.');
     }
 
     public function delete_action(Request $request

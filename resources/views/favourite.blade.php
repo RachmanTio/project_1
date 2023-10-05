@@ -111,46 +111,6 @@
 
 <script type="text/javascript">
 
-  
-
-    // $(".update-cart").change(function (e) {
-
-    //     e.preventDefault();
-
-  
-
-    //     var ele = $(this);
-
-  
-
-    //     $.ajax({
-
-    
-
-    //         method: "patch",
-
-    //         data: {
-
-    //             _token: '{{ csrf_token() }}', 
-
-    //             id: ele.parents("tr").attr("data-id"), 
-
-    //             quantity: ele.parents("tr").find(".quantity").val()
-
-    //         },
-
-    //         success: function (response) {
-
-    //            window.location.reload();
-
-    //         }
-
-    //     });
-
-    // });
-
-  
-
     $(".remove-from-favourite").click(function (e) {
       let rowid = $(this).attr('row-id');
         e.preventDefault();

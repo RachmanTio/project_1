@@ -15,6 +15,7 @@ class Keranjang extends Model
         'qty',
         'nama',
         'gambar',
+        'user_id',
         'harga',
     ];
     public function User()

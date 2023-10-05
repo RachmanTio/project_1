@@ -112,6 +112,7 @@ class ProductController extends Controller
             'nama'=>$product->nama_product,
             'gambar'=>$product->gambar,
             'harga'=>$product->harga,
+            'user_id'=>$user,
             'qty'=>1,
         ]);
         $cart = session()->get('cart', []);
@@ -131,23 +132,6 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
-    // public function update(Request $request)
-
-    // {
-
-    //     if($request->id && $request->quantity){
-
-    //         $cart = session()->get('cart');
-
-    //         $cart[$request->id]["quantity"] = $request->quantity;
-
-    //         session()->put('cart', $cart);
-
-    //         session()->flash('success', 'Cart updated successfully');
-
-    //     }
-
-    // }
     public function remove($id, Request $request)
 
     {
@@ -236,5 +220,23 @@ class ProductController extends Controller
         return redirect()->back()->with('success', 'Product added to cart successfully!');
 
     }
+
+    // public function orderproses()
+    // {
+    //     $user = auth()->user()->id;
+    //     // dd($user);
+    //     $post = Order::where('status', 'di proses');
+    //     // dd($post);
+    //     $data = $post->get();
+    //     //  dd($data);
+    //     return view('orderproses', ['orderList' => $data]);
+    // }
+    // public function orderkirim()
+    // {
+    //     $user = auth()->user()->id;
+    //     $post = Order::where('status', 'di kirim');
+    //     $data = $post->get();
+    //     return view('orderkirim', ['orderList' => $data]);
+    // }
 
 }
