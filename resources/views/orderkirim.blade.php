@@ -86,7 +86,7 @@
 
                         <td class="actions" data-th="">
 
-                          <a  href="{{ route('addtoselesai', $details->id) }}"> <button class="btn btn-success">SELESAI</button> </a>                        
+                          <a  href="{{ route('addtoselesai', $details->ID_PRODUCT) }}"> <button class="btn btn-success">SELESAI</button> </a>                        
                         </td>
     
                     </tr>

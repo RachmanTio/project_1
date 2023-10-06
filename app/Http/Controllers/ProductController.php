@@ -349,7 +349,7 @@ class ProductController extends Controller
     public function addtoselesai($id)
     {
         $user = auth()->user()->id;
-        $product = Order::findOrFail($id);
+        $product = Order::where('ID_PRODUCT', $id)->first();
         Selesai::create([
             'user_id'=>$user,
             'ID_PRODUCT'=>$product->id,
@@ -359,7 +359,7 @@ class ProductController extends Controller
             'status'=>'selesai',
         ]);
 
-        // Keranjang::where('user_id', $user)->delete();
+        Order::where('ID_PRODUCT', $id)->delete();
         return redirect()->back()->with('success', 'Product added to favourite successfully!');
     }
 }
