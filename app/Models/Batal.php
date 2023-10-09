@@ -5,9 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Batal extends Model
 {
-    protected $table = 'tb_order';
+    protected $table = 'tb_batal';
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',

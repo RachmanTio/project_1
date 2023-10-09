@@ -113,7 +113,7 @@ class UserController extends Controller
             //             'gambar' =>$gambar
             //         ]
             //     );
-            echo'Success'; 
+            return back()->with('success', 'Profil changed!')   ;
          }
         //  else{
         //      echo'Gagal ';
@@ -126,11 +126,11 @@ class UserController extends Controller
             return view('profil', compact('data'));
         }
 
-        public function editProfile(){
-            $user = auth()->user()->id;
-            $data = Uploads::where('id', $user)->first();
-            return view('profile', compact('data'));
-        }
+        // public function editProfile(){
+        //     $user = auth()->user()->id;
+        //     $data = Uploads::where('id', $user)->first();
+        //     return view('profile', compact('data'));
+        // }
 
         public function logout(Request $request) 
         {

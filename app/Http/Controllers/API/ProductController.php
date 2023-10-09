@@ -2,26 +2,24 @@
 
 namespace App\Http\Controllers\API;
 
+use App\Models\User;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\Selesai;
+use App\Models\Favourite;
+use App\Models\Keranjang;
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use App\Http\Controllers\API\BaseController;
-use App\Models\Keranjang;
-use App\Models\Order;
-use App\Models\Product;
-use App\Models\Favourite;
-use Illuminate\Http\Request;
 
 class ProductController extends BaseController
 {
     public function produk_action(Request $request){
  
     $user = auth()->user()->id;
-    // $ID_PRODUCT = $request->input('id');
-    // $nama = $request->input('nama_product');
-    // $gambar = $request->input('gambar');
-    // $harga = $request->input('harga');
     $Keranjang = Keranjang::create([
         'ID_PRODUCT'=>$request->id,
         'nama'=>$request->nama,
@@ -78,7 +76,6 @@ class ProductController extends BaseController
     public function pencarian(Request $request)
     {
         // dd($request->all());
-        // return $this->sendResponse($request->all(), 'Products retrieved successfully.');
         $user = auth()->user()->id;
         
         $product = Product::where('nama_product', 'like', "%" . $request->nama . "%")->get();
@@ -90,17 +87,62 @@ class ProductController extends BaseController
     {
         $user = auth()->user()->id;
         $product = Keranjang::where('user_id', $user)->get();
-        // return $this->sendResponse($product, 'Products retrieved successfully.');
+        $alamat = User::where('id', $user)->first();
         foreach ($product as $key => $value) {
-            Order::create([
+           $Order = Order::create([
                 'user_id'=>$user,
                 'ID_PRODUCT'=>$value->id,
                 'total'=>$value->harga * $value->qty,
                 'gambar'=>$value->gambar,
+                'nama' =>$value->nama,
+                'alamat'=>$alamat->alamat,
             ]);
         }
-        return $this->sendResponse('succes', 'Products retrieved successfully.');
+        Keranjang::where('user_id', $user)->delete();
+        return $this->sendResponse($Order, 'Products retrieved successfully.');
 
     }
 
+    public function data_proses()
+    {
+        $user = auth()->user()->id;
+        $Order = Order::where('status', 'di proses')->get();
+
+            return $this->sendResponse($Order, 'Products retrieved successfully.');
+    }
+
+    public function data_dikirim()
+    {
+        $user = auth()->user()->id;
+        $Order = Order::where('status', 'di kirim')->get();
+
+        return $this->sendResponse($Order, 'Products retrieved successfully.');
+    }
+
+    public function selesai($id)
+    {
+     
+        $user = auth()->user()->id;
+        $product = Order::where('ID_PRODUCT', $id)->first();
+        $alamat = User::where('id', $user)->first();
+        $Selesai = Selesai::create([
+            'user_id'=>$user,
+            'ID_PRODUCT'=>$product->id,
+            'total'=>$product->total,
+            'gambar'=>$product->gambar,
+            'nama'=>$product->nama,
+            'status'=>'selesai',
+            'alamat'=>$alamat->alamat,
+        
+        ]);
+        Order::where('ID_PRODUCT', $id)->delete();
+        return $this->sendResponse($Selesai, 'Products retrieved successfully.');
+    }
+
 }
+    // {
+    //     Order::where('id', $request->id)->update([                        
+    //         'status' => 'selesai',
+    //     ]);
+    //     return $this->sendResponse('selesai', 'Products retrieved successfully.');
+    // }

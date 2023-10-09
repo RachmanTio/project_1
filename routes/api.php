@@ -46,6 +46,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('search', [ProductController::class, 'pencarian']);
     Route::post('token', [UserController::class, 'logout_action']);
     Route::post('checkout_barang', [ProductController::class, 'checkout']);
+    Route::post('selamat', [ProductController::class, 'selesai']);
     
 
 

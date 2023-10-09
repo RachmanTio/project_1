@@ -25,7 +25,6 @@ class UserController extends BaseController
     }
     public function profil()
     {
-        // $user = User::find($id);
         $user = auth()->user()->id;
         $users = User::where('id', $user)->get();
         return $this->sendResponse($users, 'Products retrieved successfully.');
@@ -37,63 +36,6 @@ class UserController extends BaseController
 
         return response()->json(['message' => 'Berhasil logout']);
     }
-
-    // public function data_register()
-    // {
-    //     $user = auth()->user()->id;
-    //     $users = User::where('id', $user)->get();
-    //     return $this->sendResponse($users, 'Products retrieved successfully.');
-    // }
-
-    // public function data_register(Request $request)
-    // {
-    // $user = new user;
-    // $user->username = $request->username;
-    // $user->email = $request->email;
-    // $user->password = Hash::make($request->password);
-    // $user->save();
-    // $token = $user->createToken->plainTextToken;
-    // return response()->json($user, $token);
-    // }
-
-    // public function data_login(Request $request)
-    // {
-    //     $user = User::where($request->email)->firstOrFail();
-    //     $token = $user->createToken->plainTextToken;
-    //     return response()->json ($token);
-    // }
-
-    // public function user_profile(Request $request)
-    // {      
-    //     $user = auth()->user()->id;
-    //     // return $this->sendResponse('tes', 'Succes');
-    //     // dd($user); 
-    //     $request->validate([
-    //         'gambar' => 'required',
-    //         'gambar.*' => 'mimes:doc,docx,PDF,pdf,jpg,jpeg,png|max:2000'
-            
-    //     ]);
-    //     if ($request->hasfile('gambar')) {            
-    //         $gambar = round(microtime(true) * 1000).'-'.str_replace(' ','-',$request->file('gambar')->getClientOriginalName());
-    //         $request->file('gambar')->move(public_path('gambar'), $gambar);
-    //         User::where('id', $user)->update([                        
-    //             'username' => $request->username,
-    //             'email' => $request->email,
-    //             'jeniskelamin' => $request->jeniskelamin,
-    //             'gambar' => $gambar,
-    //             'alamat' => $request->alamat,
-    //             'tanggallahir' => $request->tanggallahir,
-    //         ]);
-    //         //  Uploads::create(
-    //         //         [                        
-    //         //             'gambar' =>$gambar
-    //         //         ]
-    //         //     );
-    //         return $this->sendResponse('tes', 'Succes');
-    //     }else{
-    //         return $this->sendResponse('tes', 'gagal');
-    //     }
-    // }
 
     /**
      * Show the form for creating a new resource.

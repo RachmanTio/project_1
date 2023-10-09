@@ -1,11 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-      {{--  <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">  --}}
     <title>HOME</title>
-    {{--  <link rel="stylesheet" href="{{ asset('css/p.css') }}">  --}}
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -23,23 +19,14 @@
 <body>
     <section style="background-color: #eee;">
         <nav class="navbar navbar-expand-md navbar-light bg-success fixed-top">
-
             <a class="nav-link text-light font-weight-bold px-3">CAFE BAROKAH</a>
-
             <button type="button" class="navbar-toggler bg-light" data-toggle="collapse" data-target="#nav">
-
                 <span class="navbar-toggler-icon"></span>
-
             </button>
-
             <div class="collapse navbar-collapse justify-content-between" id="nav">
-
                 <ul class="navbar-nav">
-
                     <li class="nav-item">
-
                         <a class="nav-link text-light font-weight-bold px-3" href="/profil">Profil</a>
-
                     </li>
                     <li class="nav-item dropdown">
                       <a class="nav-link dropdown-toggle text-light font-weight-bold px-3" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -66,50 +53,39 @@
                           <a class="dropdown-item" href="/orderbatal">Batal</a>
                           <div class="dropdown-divider"></div>
                         </div>
-  
                       </li>
-                 
                 </ul>
 
 
                 <!-- Search bar -->
 
                 <form class="form-inline ml-3" action="#" method="GET">
-
                     <div class="from-group">
-
                         <input type="text" class="form-control " placeholder="Search" id="s_query" name="s_query">
-
                         <button type="submit"><i class="fa fa-search"></i></button>
-
                     </div>
-
                 </form>
-
             </div>
-
         </nav>
     </section>
     <br>
     <br>
     <br>
     <br>
-    <h2 class="text-center">MAKANAN DALAM KERANJANG</h3>
+    <h2 class="text-center">ORDER YANG DI KIRIM</h2>
     <br>
     <ol>
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
-      <table id="cart" class="table table-hover table-condensed">
+      <table id="favourite" class="table table-hover table-condensed">
 
         <thead>
     
             <tr>
     
-                <th style="width:50%">Product</th>
+                <th style="width:70%">Product</th>
     
-                <th style="width:10%">Price</th>
-        
-                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:30%">Price</th>
     
                 <th style="width:10%"></th>
     
@@ -119,12 +95,12 @@
           <tbody>
             @php $total = 0 @endphp
 
-            @if(session('cart'))
+            {{-- @if(session('favourite')) --}}
     
                 {{-- @foreach(session('cart') as $id => $details) --}}
-                @foreach($productList as $id => $details)
+                @foreach($orderList as $id => $details)
     
-                    @php $total += intval($details->harga) * intval($details->qty) @endphp
+                    @php $total += intval($details->total) * intval($details->qty) @endphp
     
                     <tr data-id="{{ $id }}">
     
@@ -144,45 +120,26 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->harga }}</td>
-    
-    
-                        <td data-th="Subtotal" class="text-center">{{ intval($details->harga) * intval($details->qty) }}</td>
-    
-                        <td class="actions" data-th="">
-                          
-                            <button class="btn btn-danger btn-sm remove-from-cart"row-id='{{$details->id}}'>HAPUS</button>
-                          
-                        </td>
+                        <td data-th="Price">Rp{{ $details->total }}</td>
+
                         <td class="actions" data-th="">
 
-                          <a  href="{{ route('addtobatal', $details->ID_PRODUCT) }}"> <button class="btn btn-success">BATAL</button> </a>                        
+                          <a  href="{{ route('addtoselesai', $details->ID_PRODUCT) }}"> <button class="btn btn-success">SELESAI</button> </a>                        
                         </td>
     
                     </tr>
     
                 @endforeach
-            @endif
+            {{-- @endif --}}
           </tbody>
           <tfoot>
-
-            <tr>
-    
-                <td colspan="5" class="text-right"><h3><strong>Total Rp{{ $total }}</strong></h3></td>
-    
-            </tr>
     
             <tr>
     
                 <td colspan="5" class="text-right">
     
-                    <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
-                    
-                    @if (isset($details))
-                    <a  href="{{ route('addtocheckout', $details->id) }}"> <button class="btn btn-success">Checkout</button> </a>
-                    @endif
-                    
-    
+                    {{-- <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a> --}}
+        
                 </td>
     
             </tr>
@@ -194,90 +151,7 @@
 
   
 
-    
 
-  
-
-    $(".remove-from-cart").click(function (e) {
-      let rowid = $(this).attr('row-id');
-        e.preventDefault();
-
-  
-
-        var ele = $(this);
-
-  
-
-        if(confirm("Are you sure want to remove?")) {
-
-            $.ajax({
-
-                url: '{{ url('remove-from-cart') }}' + '/' + rowid,
-
-
-                method: "post",
-
-                data: {
-
-                    _token: '{{ csrf_token() }}', 
-
-                    id: rowid
-                    
-
-                },
-
-                success: function (response) {
-
-                    window.location.reload();
-
-                }
-
-            });
-
-        }
-
-    });
-    $(".remove-to-batal").click(function (e) {
-      let rowid = $(this).attr('row-id');
-        e.preventDefault();
-
-  
-
-        var ele = $(this);
-
-  
-
-        if(confirm("Are you sure want to remove?")) {
-
-            $.ajax({
-
-                url: '{{ url('remove-from-cart') }}' + '/' + rowid,
-
-
-                method: "post",
-
-                data: {
-
-                    _token: '{{ csrf_token() }}', 
-
-                    id: rowid
-                    
-
-                },
-
-                success: function (response) {
-
-                    window.location.reload();
-
-                }
-
-            });
-
-        }
-
-    });
-
-  
 
 </script>
 
