@@ -121,8 +121,8 @@ class UserController extends Controller
             //             'gambar' =>$gambar
             //         ]
             //     );
-            echo'Success'; 
-         }
+            return back()->with('success', 'Profil changed!')   ;
+        }
          public function tampilkanProfil() {
             // $Uploads = Uploads::first(); 
             // return view('home', compact('uploads'));

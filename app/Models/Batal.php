@@ -16,5 +16,6 @@ class Batal extends Model
         'gambar',
         'nama',
         'status',
+        'alamat',
     ];
 }

@@ -16,5 +16,6 @@ class Selesai extends Model
         'gambar',
         'nama',
         'status',
+        'alamat',
     ];
 }

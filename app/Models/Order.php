@@ -16,5 +16,6 @@ class Order extends Model
         'gambar',
         'status',
         'nama',
+        'alamat',
     ];
 }

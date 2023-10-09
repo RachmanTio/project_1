@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use auth;
+use App\Models\User;
 use App\Models\Batal;
 use App\Models\Order;
 use App\Models\Product;
@@ -285,6 +286,7 @@ class ProductController extends Controller
     {
         $user = auth()->user()->id;
         $product = Keranjang::where('user_id', $user)->get();
+        $alamat = User::where('id', $user)->first();
         foreach ($product as $key => $value) {
             Order::create([
                 'user_id'=>$user,
@@ -292,6 +294,7 @@ class ProductController extends Controller
                 'total'=>$value->harga * $value->qty,
                 'gambar'=>$value->gambar,
                 'nama'=>$value->nama,
+                'alamat'=>$alamat->alamat,
             ]);
         }
          Keranjang::where('user_id', $user)->delete();
@@ -327,6 +330,7 @@ class ProductController extends Controller
         
         $user = auth()->user()->id;
         $product = Keranjang::where('ID_PRODUCT', $id)->first();
+        $alamat = User::where('id', $user)->first();
         Batal::create([
             'user_id'=>$user,
             'ID_PRODUCT'=>$product->id,
@@ -334,6 +338,8 @@ class ProductController extends Controller
             'gambar'=>$product->gambar,
             'nama'=>$product->nama,
             'status'=>'di batalkan',
+            'alamat'=>$alamat->alamat,
+
         ]);
 
         Keranjang::where('ID_PRODUCT', $id)->delete();
@@ -350,6 +356,7 @@ class ProductController extends Controller
     {
         $user = auth()->user()->id;
         $product = Order::where('ID_PRODUCT', $id)->first();
+        $alamat = User::where('id', $user)->first();
         Selesai::create([
             'user_id'=>$user,
             'ID_PRODUCT'=>$product->id,
@@ -357,6 +364,7 @@ class ProductController extends Controller
             'gambar'=>$product->gambar,
             'nama'=>$product->nama,
             'status'=>'selesai',
+            'alamat'=>$alamat->alamat,
         ]);
 
         Order::where('ID_PRODUCT', $id)->delete();
