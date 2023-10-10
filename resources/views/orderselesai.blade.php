@@ -114,7 +114,7 @@
     
                                 <div class="col-sm-9">
     
-                                    <h4 class="nomargin">{{ $details->nama }}</h4>
+                                    <h4 class="nomargin">{{ $details->nama_product }}</h4>
     
                                 </div>
     

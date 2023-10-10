@@ -136,7 +136,7 @@
     
                                 <div class="col-sm-9">
     
-                                    <h4 class="nomargin">{{ $details->nama }}</h4>
+                                    <h4 class="nomargin">{{ $details->nama_product }}</h4>
     
                                 </div>
     
@@ -156,7 +156,7 @@
                         </td>
                         <td class="actions" data-th="">
 
-                          <a  href="{{ route('addtobatal', $details->ID_PRODUCT) }}"> <button class="btn btn-success">BATAL</button> </a>                        
+                          <a  href="{{ route('addtobatal', $details->id_product) }}"> <button class="btn btn-success">BATAL</button> </a>                        
                         </td>
     
                     </tr>
