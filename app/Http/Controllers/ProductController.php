@@ -116,8 +116,8 @@ class ProductController extends Controller
         $user = auth()->user()->id;
         $product = Product::findOrFail($id);
         Keranjang::create([
-            'ID_PRODUCT'=>$product->id,
-            'nama'=>$product->nama_product,
+            'id_product'=>$product->id,
+            'nama_product'=>$product->nama_product,
             'gambar'=>$product->gambar,
             'harga'=>$product->harga,
             'user_id'=>$user,
@@ -202,8 +202,8 @@ class ProductController extends Controller
         $user = auth()->user()->id;
         $product = Product::findOrFail($id);
         Favourite::create([
-            'ID_PRODUCT'=>$product->id,
-            'nama'=>$product->nama_product,
+            'id_product'=>$product->id,
+            'nama_product'=>$product->nama_product,
             'gambar'=>$product->gambar,
             'harga'=>$product->harga,
             'user_id'=>$user,
@@ -290,10 +290,10 @@ class ProductController extends Controller
         foreach ($product as $key => $value) {
             Order::create([
                 'user_id'=>$user,
-                'ID_PRODUCT'=>$value->id,
+                'id_product'=>$value->id,
                 'total'=>$value->harga * $value->qty,
                 'gambar'=>$value->gambar,
-                'nama'=>$value->nama,
+                'nama_product'=>$value->nama_product,
                 'alamat'=>$alamat->alamat,
             ]);
         }
@@ -329,20 +329,20 @@ class ProductController extends Controller
     {
         
         $user = auth()->user()->id;
-        $product = Keranjang::where('ID_PRODUCT', $id)->first();
+        $product = Keranjang::where('id_product', $id)->first();
         $alamat = User::where('id', $user)->first();
         Batal::create([
             'user_id'=>$user,
-            'ID_PRODUCT'=>$product->id,
+            'id_product'=>$product->id,
             'total'=>$product->harga * $product->qty,
             'gambar'=>$product->gambar,
-            'nama'=>$product->nama,
+            'nama_product'=>$product->nama_product,
             'status'=>'di batalkan',
             'alamat'=>$alamat->alamat,
 
         ]);
 
-        Keranjang::where('ID_PRODUCT', $id)->delete();
+        Keranjang::where('id_product', $id)->first()->delete();
         return redirect()->route('cart');
     }
     public function orderselesai()
@@ -355,19 +355,19 @@ class ProductController extends Controller
     public function addtoselesai($id)
     {
         $user = auth()->user()->id;
-        $product = Order::where('ID_PRODUCT', $id)->first();
+        $product = Order::where('id_product', $id)->first();
         $alamat = User::where('id', $user)->first();
         Selesai::create([
             'user_id'=>$user,
-            'ID_PRODUCT'=>$product->id,
+            'id_product'=>$product->id,
             'total'=>$product->total,
             'gambar'=>$product->gambar,
-            'nama'=>$product->nama,
+            'nama_product'=>$product->nama_product,
             'status'=>'selesai',
             'alamat'=>$alamat->alamat,
         ]);
 
-        Order::where('ID_PRODUCT', $id)->delete();
+        Order::where('id_product', $id)->delete();
         return redirect()->back()->with('success', 'Product added to favourite successfully!');
     }
 }
