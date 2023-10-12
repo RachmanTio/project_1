@@ -198,17 +198,27 @@ class ProductController extends Controller
     public function addTofavourite($id)
 
     {
-    
+        
         $user = auth()->user()->id;
         $product = Product::findOrFail($id);
-        Favourite::create([
-            'id_product'=>$product->id,
-            'nama_product'=>$product->nama_product,
-            'gambar'=>$product->gambar,
-            'harga'=>$product->harga,
-            'user_id'=>$user,
-            'qty'=>1,
-        ]);
+        $favourite = Favourite::where(['id_product'=> $id, 'user_id' => $user])->first();
+        if (isset($favourite)) {
+            Favourite::where(['id_product'=> $id, 'user_id' => $user])->update([
+                'harga'=>$product->harga,
+                'qty'=>1,
+            ]);
+        }
+        else {
+            Favourite::create([
+                'id_product'=>$product->id,
+                'nama_product'=>$product->nama_product,
+                'gambar'=>$product->gambar,
+                'harga'=>$product->harga,
+                'user_id'=>$user,
+                'qty'=>1,
+            ]);
+        }
+        
 
 
           
