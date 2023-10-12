@@ -48,6 +48,8 @@ Route::middleware('auth:api')->group( function () {
     Route::post('checkout_barang', [ProductController::class, 'checkout']);
     Route::post('selamat', [ProductController::class, 'selesai']);
     Route::post('cancel', [ProductController::class, 'batal']);
+    Route::get('data_favorit', [ProductController::class, 'datafavoritcuyy']);
+    Route::get('data_cart', [ProductController::class, 'cart']);
     
 
 

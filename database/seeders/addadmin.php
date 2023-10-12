@@ -18,7 +18,7 @@ class addadmin extends Seeder
             [
                 'username' => 'admin',
                 'email' => 'admin@gmail.com',
-                'password' => '2y$10$b5LYHcTxgETTtZ1SHlqfUewgDk4nT5B4f82ak1Ld/LsOoIhMyevPu',
+                'password' => '$2y$10$b5LYHcTxgETTtZ1SHlqfUewgDk4nT5B4f82ak1Ld/LsOoIhMyevPu',
                 'is_admin' => '1',
             ],
         ]);

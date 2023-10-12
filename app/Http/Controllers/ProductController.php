@@ -119,6 +119,14 @@ class ProductController extends Controller
     {
         $user = auth()->user()->id;
         $product = Product::findOrFail($id);
+        $favourite = Favourite::where(['id_product'=> $id, 'user_id' => $user])->first();
+        if (isset($favourite)) {
+            Favourite::where(['id_product'=> $id, 'user_id' => $user])->update([
+                'harga'=>$product->harga,
+                'qty'=>1,
+            ]);
+        }
+        else{
         Favourite::create([
             'id_product' => $product->id,
             'nama_product' => $product->nama_product,
@@ -127,6 +135,7 @@ class ProductController extends Controller
             'user_id' => $user,
             'qty' => 1,
         ]);
+    }
         $favourite = session()->get('favourite', []);
         if (isset($cart[$id])) {
             $favourite[$id]['quantity']++;

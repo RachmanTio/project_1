@@ -37,22 +37,38 @@ class ProductController extends BaseController
 
     public function favourite_action(Request $request){
         $user = auth()->user()->id;
-        $Favourite = Favourite::create([
-            'id_product'=>$request->id,
-            'nama_product'=>$request->nama_product,
-            'gambar'=>$request->gambar,
-            'harga'=>$request->harga,
+        $product = Product::findOrFail($request->id);   
+        $favourite = Favourite::where(['id_product'=> $request->id, 'user_id'=> $user])->first();
+        if (isset($favourite)) {
+            Favourite::where(['id_product'=> $request->id, 'user_id' => $user])->update([
+                'harga'=>$product->harga,
+                'qty'=>1,
+            ]);
+        }
+        else {
+        Favourite::create([
+            'id_product'=>$product->id,
+            'nama_product'=>$product->nama_product,
+            'gambar'=>$product->gambar,
+            'harga'=>$product->harga,
             'user_id' =>$user,
-            'qty'=>$request->qty,
+            'qty'=>$product->qty,
         ]);
+    }
 
-        return $this->sendResponse($Favourite, 'Products retrieved successfully.');
+        return $this->sendResponse($product, 'Products retrieved successfully.');
     }
 
     public function delete_action(Request $request
     ){
-        Favourite::where('id', $request->id)->delete();
-        return $this->sendResponse('succes', 'Products retrieved successfully.');
+        $Favourite = Favourite::where('id', $request->id)->delete();
+        return $this->sendResponse($Favourite, 'Products retrieved successfully.');
+    }
+
+    public function hapus_keranjang(Request $request
+    ){
+        $Keranjang = Keranjang::where('id', $request->id)->delete();
+        return $this->sendResponse($Keranjang, 'Products retrieved successfully.');
     }
 
     public function food_action(){
@@ -163,6 +179,20 @@ class ProductController extends BaseController
 
         Keranjang::where('id_product', $request->id)->delete();
         return $this->sendResponse($Batal, 'Products retrieved successfully.');
+    }
+
+    public function datafavoritcuyy(){
+        $data_favorit = Favourite::get();
+        if ($data_favorit){
+            return $this->sendResponse($data_favorit, 'Products retrieved successfully.');
+        }
+    }
+
+    public function cart(){
+        $data_keranjang = Keranjang::get();
+        if ($data_keranjang){
+            return $this->sendResponse($data_keranjang, 'Products retrieved successfully.');
+        }
     }
 
 }
