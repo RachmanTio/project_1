@@ -17,5 +17,6 @@ class Order extends Model
         'status',
         'nama_product',
         'alamat',
+        'qty',
     ];
 }
