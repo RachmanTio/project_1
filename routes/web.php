@@ -72,6 +72,7 @@ Route::middleware('auth')->group( function () {
     Route::get('hasil', [ProductController::class, 'hasil'])->name('hasil');
     });
     //checkout
+    Route::post('prosescheckout', [ProductController::class, 'addtocheckout'])->name('prosescheckout');
     Route::get('checkout', [ProductController::class, 'checkout'])->name('checkout');
     Route::get('addtocheckout/{id}', [ProductController::class, 'addtocheckout'])->name('addtocheckout');
     //Order Proses

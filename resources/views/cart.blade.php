@@ -39,17 +39,18 @@
     <ol>
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
+    <form  action="{{route('prosescheckout')}}" method="POST">
       <table id="cart" class="table table-hover table-condensed">
 
         <thead>
     
             <tr>
     
-                <th style="width:50%">Product</th>
+                <th style="width:70%">Product</th>
     
-                <th style="width:10%">Price</th>
+                <th style="width:15%">Price</th>
         
-                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:15%" class="text-center">Hapus Atau Batal</th>
     
                 <th style="width:10%"></th>
     
@@ -86,8 +87,7 @@
     
                         <td data-th="Price">Rp{{ $details->harga }}</td>
     
-    
-                        <td data-th="Subtotal" class="text-center">{{ intval($details->harga) * intval($details->qty) }}</td>
+                          <input data-th="Subtotal" class="text-center" value="{{ intval($details->harga) * intval($details->qty) }}">{{ intval($details->harga) * intval($details->qty) }}</td>
     
                         <td class="actions" data-th="">
                           
@@ -118,16 +118,18 @@
     
                     <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
                     
-                    @if (isset($details))
+                    {{-- @if (isset($details))
                     <a  href="{{ route('addtocheckout', $details->id) }}"> <button class="btn btn-success">Checkout</button> </a>
                     @endif
-                    
+                     --}}
+                     <button type="submit" button class="btn btn-success" >Checkout</button>
     
                 </td>
     
             </tr>
         </tfoot>
         </table>
+    </form>
         {{-- @section('scripts') --}}
 
 <script type="text/javascript">

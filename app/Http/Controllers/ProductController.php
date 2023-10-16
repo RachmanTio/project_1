@@ -6,6 +6,7 @@ use auth;
 use App\Models\User;
 use App\Models\Batal;
 use App\Models\Order;
+use App\Models\Detail;
 use App\Models\Product;
 use App\Models\Selesai;
 use App\Models\Uploads;
@@ -292,19 +293,30 @@ class ProductController extends Controller
         // dd($product);
         return view('checkout', ['checkouttList' => $product]);
     }
-    public function addtocheckout($id)
+    public function addtocheckout(Requset $request)
     {
+        dd($requset->all());
         $user = auth()->user()->id;
         $product = Keranjang::where('user_id', $user)->get();
         $alamat = User::where('id', $user)->first();
+        $order=Order::create([
+            'user_id'=>$user,
+            'id_product'=>$value->id,
+            'total'=>$value->harga * $value->qty,
+            'gambar'=>$value->gambar,
+            'nama_product'=>$value->nama_product,
+            'alamat'=>$alamat->alamat,
+            'qty'=>1,
+
+        ]);
         foreach ($product as $key => $value) {
-            Order::create([
+            dd($value);
+            Detail::create([
+                'order_id'=>$order->id,
                 'user_id'=>$user,
+                'qty'=>1,
                 'id_product'=>$value->id,
-                'total'=>$value->harga * $value->qty,
-                'gambar'=>$value->gambar,
-                'nama_product'=>$value->nama_product,
-                'alamat'=>$alamat->alamat,
+                'totalharga'=>$value
             ]);
         }
          Keranjang::where('user_id', $user)->delete();
