@@ -50,6 +50,7 @@ Route::middleware('auth:api')->group( function () {
     Route::post('cancel', [ProductController::class, 'batal']);
     Route::get('data_favorit', [ProductController::class, 'datafavoritcuyy']);
     Route::get('data_cart', [ProductController::class, 'cart']);
+    Route::get('admin', [ProductController::class, 'data_proses']);
     
 
 

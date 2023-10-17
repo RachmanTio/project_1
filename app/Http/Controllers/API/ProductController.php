@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
+use App\Models\Batal;
 use App\Models\Order;
+use App\Models\Detail;
 use App\Models\Product;
 use App\Models\Selesai;
 use App\Models\Favourite;
 use App\Models\Keranjang;
-use App\Models\Batal;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -21,10 +22,11 @@ class ProductController extends BaseController
     public function produk_action(Request $request){
  
     $user = auth()->user()->id;
+    $product = Product::findOrFail($request->id);  
     $Keranjang = Keranjang::create([
         'id_product'=>$request->id,
-        'nama_product'=>$request->nama_product,
-        'gambar'=>$request->gambar,
+        'nama_product'=>$product->nama_product,
+        'gambar'=>$product->gambar,
         'harga'=>$request->harga,
         'user_id' =>$user,
         'qty'=>$request->qty,
@@ -102,21 +104,41 @@ class ProductController extends BaseController
 
     public function checkout(Request $request)
     {
+        // dd($request->all());
+        // return $this->sendResponse($request->price, 'Products retrieved successfully.');
         $user = auth()->user()->id;
-        $product = Keranjang::where('user_id', $user)->get();
+        $product = Keranjang::where('user_id', $user)->where('id' ,$request->id)->first();
         $alamat = User::where('id', $user)->first();
-        foreach ($product as $key => $value) {
-           $Order = Order::create([
-                'user_id'=>$user,
-                'id_product'=>$value->id,
-                'total'=>$value->harga * $value->qty,
-                'gambar'=>$value->gambar,
-                'nama_product' =>$value->nama_product,
-                'alamat'=>$alamat->alamat,
-            ]);
+
+        $total = 0;
+
+        foreach ($request->price as $key => $value) {
+            $total += $value;
         }
-        Keranjang::where('user_id', $user)->delete();
-        return $this->sendResponse($Order, 'Products retrieved successfully.');
+       
+            // dd($request->all());
+            $order = Order::create([
+                'user_id'=>$user,
+                'total'=>$total,
+                'alamat'=>$request->alamat,
+                'qty'=>1,
+    
+            ]);
+            if (isset($request->product_id)) {
+                foreach ($request->product_id as $key => $value) {
+                    // dd($value);
+                   Detail::create([
+                        'order_id'=>$order->id,
+                        'user_id'=>$user,
+                        'qty'=>1,
+                        'product_id'=>$value,
+                        'totalharga'=>$request->price[$key],
+                    ]);
+                }
+            }
+    
+                  Keranjang::where('user_id', $user)->where('id' ,$request->id)->delete();
+            return $this->sendResponse($order, 'Products retrieved successfully.');
 
     }
 
@@ -125,7 +147,7 @@ class ProductController extends BaseController
         $user = auth()->user()->id;
         $Order = Order::where('status', 'di proses')->get();
 
-            return $this->sendResponse($Order, 'Products retrieved successfully.');
+        return $this->sendResponse($Order, 'Products retrieved successfully.');
     }
 
     public function data_dikirim()
@@ -182,17 +204,18 @@ class ProductController extends BaseController
     }
 
     public function datafavoritcuyy(){
-        $data_favorit = Favourite::get();
-        if ($data_favorit){
-            return $this->sendResponse($data_favorit, 'Products retrieved successfully.');
+            $user = auth()->user()->id;
+            $data_favorit = Favourite::where('user_id', $user)->get();
+            if ($data_favorit){
+                return $this->sendResponse($data_favorit, 'Products retrieved successfully.');
+            }
         }
-    }
 
     public function cart(){
-        $data_keranjang = Keranjang::get();
+        $user = auth()->user()->id;
+        $data_keranjang = Keranjang::where('user_id', $user)->get();
         if ($data_keranjang){
             return $this->sendResponse($data_keranjang, 'Products retrieved successfully.');
         }
     }
-
 }

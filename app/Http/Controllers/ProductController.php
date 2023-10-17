@@ -6,6 +6,7 @@ use auth;
 use App\Models\User;
 use App\Models\Batal;
 use App\Models\Order;
+use App\Models\Detail;
 use App\Models\Product;
 use App\Models\Selesai;
 use App\Models\Uploads;
@@ -171,25 +172,39 @@ class ProductController extends Controller
         return view('/show', compact('users'))->with('i', (request()->input('page', 1) - 1) * 5);
     }
 
-    public function addtocheckout($id)
+    public function addtocheckout(Request $request)
     {
+        // dd($request->all());
         $user = auth()->user()->id;
         $product = Keranjang::where('user_id', $user)->get();
         $alamat = User::where('id', $user)->first();
-        foreach ($product as $key => $value) {
-            Order::create([
-                'user_id' => $user,
-                'id_product' => $value->id,
-                'total' => $value->harga * $value->qty,
-                'gambar' => $value->gambar,
-                'nama_product' => $value->nama_product,
-                'alamat'=>$alamat->alamat,
-            ]);
-        }
-        Keranjang::where('user_id', $user)->delete();
-        return redirect()->back()->with('success', 'Product added to cart successfully!');
-    }
+        $order=Order::create([
+            'user_id'=>$user,
+            'id_product'=>$request->id,
+            'total'=>$request->subtotal,
+            // 'gambar'=>$product->gambar,
+            // 'nama_product'=>$value->nama_product,
+            'alamat'=>$request->alamat,
+            'qty'=>1,
 
+        ]);
+        if (isset($request->product_id)) {
+            foreach ($request->product_id as $key => $value) {
+                // dd($value);
+                Detail::create([
+                    'order_id'=>$order->id,
+                    'user_id'=>$user,
+                    'qty'=>1,
+                    'product_id'=>$value,
+                    'totalharga'=>$request->price[$key],
+                ]);
+            }
+        }
+        
+         Keranjang::where('user_id', $user)->delete();
+        return redirect()->back()->with('success', 'Product added to cart successfully!');
+
+    }
     public function orderproses()
     {
         $user = auth()->user()->id;

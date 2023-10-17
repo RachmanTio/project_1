@@ -5,18 +5,15 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Order extends Model
+class Detail extends Model
 {
-    protected $table = 'tb_order';
+    protected $table = 'tb_orderdetail';
     protected $primaryKey = 'id';
     protected $fillable = [
         'user_id',
-        // 'id_product',
-        'total',
-        // 'gambar',
-        // 'nama_product',
-        // 'status',
-        'alamat',
+        'product_id',
+        'totalharga',
         'qty',
+        'order_id',
     ];
 }
