@@ -82,11 +82,11 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->total }}</td>
+                        <td data-th="Price">Rp{{ $details->totalharga }}</td>
 
                         <td class="actions" data-th="">
 
-                          <a  href="{{ route('addtoselesai', $details->id_product) }}"> <button class="btn btn-success">SELESAI</button> </a>                        
+                          <a  href="{{ route('addtoselesai', $details->product_id) }}"> <button class="btn btn-success">SELESAI</button> </a>                        
                         </td>
     
                     </tr>

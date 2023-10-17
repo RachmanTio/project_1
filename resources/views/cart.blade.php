@@ -40,6 +40,7 @@
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
     <form  action="{{route('prosescheckout')}}" method="POST">
+      @csrf
       <table id="cart" class="table table-hover table-condensed">
 
         <thead>
@@ -78,7 +79,9 @@
                                 <div class="col-sm-9">
     
                                     <h4 class="nomargin">{{ $details->nama_product }}</h4>
-    
+
+                                    <input type="hidden" name="product_id[]" value="{{$details->id_product}}">
+
                                 </div>
     
                             </div>
@@ -87,7 +90,7 @@
     
                         <td data-th="Price">Rp{{ $details->harga }}</td>
     
-                          <input data-th="Subtotal" class="text-center" value="{{ intval($details->harga) * intval($details->qty) }}">{{ intval($details->harga) * intval($details->qty) }}</td>
+                          <input data-th="Subtotal" name="price[]" type="hidden" class="text-center" value="{{ intval($details->harga) * intval($details->qty) }}">{{ intval($details->harga) * intval($details->qty) }}</td>
     
                         <td class="actions" data-th="">
                           
@@ -96,7 +99,7 @@
                         </td>
                         <td class="actions" data-th="">
 
-                          <a  href="{{ route('addtobatal', $details->id_product) }}"> <button class="btn btn-success">BATAL</button> </a>                        
+                          <a  href="{{ route('addtobatal', $details->id) }}" class="btn btn-success"> BATAL </a>                        
                         </td>
     
                     </tr>
@@ -107,7 +110,7 @@
           <tfoot>
 
             <tr>
-    
+              <input type="hidden" name="subtotal" value="{{$total}}">
                 <td colspan="5" class="text-right"><h3><strong>Total Rp{{ $total }}</strong></h3></td>
     
             </tr>

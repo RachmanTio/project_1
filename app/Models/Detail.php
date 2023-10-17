@@ -14,5 +14,7 @@ class Detail extends Model
         'product_id',
         'totalharga',
         'qty',
+        'order_id',
+        'statusproduct',
     ];
 }

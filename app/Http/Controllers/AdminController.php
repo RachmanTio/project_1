@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+use App\Models\Detail;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +38,41 @@ class AdminController extends Controller
     public function adminhome()
     {
         
-        $data = Order::all();
-        return view('adminhome', compact('data'));
+        $data = Detail::leftJoin('tb_product', 'tb_product.id', 'tb_orderdetail.product_id') // leftJoin('nama_tabel_join', 'nama_tabel_join.id', 'nama_tabel_utama.foreign_key')
+                        ->select(
+                            'tb_orderdetail.id',
+                            'tb_orderdetail.product_id',
+                            'tb_orderdetail.user_id',
+                            'tb_orderdetail.totalharga',
+                            'tb_orderdetail.qty',
+                            'tb_orderdetail.order_id',
+                            'tb_orderdetail.statusproduct', // 'nama_tabel.nama_kolom'
+                            'tb_product.nama_product',
+                            'tb_product.gambar', // 'nama_tabel.nama_kolom'
+                            // lanjutkan kebawah untuk ambil data yang dibutuhkan
+                        )->get();
+
+                        return view('adminhome', compact('data'));
+
+
     }
     public function adminshow($id)
     {
-        $order = Order::find($id);
+
+        $order = Detail::leftJoin('tb_product', 'tb_product.id', 'tb_orderdetail.product_id')
+        ->where('tb_orderdetail.id', $id)
+        ->select(
+            'tb_orderdetail.id',
+            'tb_orderdetail.product_id',
+            'tb_orderdetail.user_id',
+                            'tb_orderdetail.totalharga',
+                            'tb_orderdetail.qty',
+                            'tb_orderdetail.order_id',
+                            'tb_orderdetail.statusproduct', // 'nama_tabel.nama_kolom'
+                            'tb_product.nama_product',
+                            'tb_product.gambar', 
+        )
+        ->first();
         return view('adminshow', compact('order'));
     }
     public function actionstatus(Request $request)
@@ -50,8 +80,8 @@ class AdminController extends Controller
         // return dd($request->all());
         // $order = Order::('id', $request->id)->first();
 
-        Order::where('id', $request->id)
-              ->update(['status' => $request->sellist1]);
+        Detail::where('id', $request->id)
+              ->update(['statusproduct' => $request->sellist1]);
 
 
         // if ($request->hasfile('status')) {            

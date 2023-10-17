@@ -83,7 +83,7 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->total}}</td>
+                        <td data-th="Price">Rp{{ $details->totalharga}}</td>
     
                     </tr>
     

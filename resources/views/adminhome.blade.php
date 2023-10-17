@@ -33,7 +33,7 @@
                 <p class="lead mb-0"></p>
               </div>
               <div class="row">
-                <h5 class="mb-0">STATUS {{$item->status}}</h5>
+                <h5 class="mb-0">STATUS {{$item->statusproduct}}</h5>
               </div>
               <img src="{{asset('')  . $item->gambar}}" alt="image" height="300" width="355 "
                 class="card-img-top" alt=""  />
@@ -44,7 +44,7 @@
     
                 <div class="d-flex justify-content-between mb-3">
                   <h5 class="mb-0">{{$item->nama}}</h5>
-                  <h5 class="text-dark mb-0">{{$item->total}}</h5>
+                  <h5 class="text-dark mb-0">{{$item->totalharga}}</h5>
                   <h5 class="text-dark mb-0">USER ID:{{$item->user_id}}</h5>
                 </div>
               <br>
