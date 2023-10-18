@@ -95,21 +95,24 @@
     <br>
     <br>
     <h2 class="text-center">MAKANAN DALAM KERANJANG</h3>
-    <br>
     <ol>
       {{-- @foreach ($productList as $data) --}}
     {{-- @section('content') --}}
+    <form  action="{{route('prosescheckout')}}" method="POST">
+      @csrf
       <table id="cart" class="table table-hover table-condensed">
 
         <thead>
     
             <tr>
     
-                <th style="width:50%">Product</th>
+                <th style="width:70%">Product</th>
     
-                <th style="width:10%">Price</th>
+                <th style="width:15%">Price</th>
         
-                <th style="width:22%" class="text-center">Subtotal</th>
+                <th style="width:15%">Hapus</th>
+
+                <th style="width:15%">Batal</th>
     
                 <th style="width:10%"></th>
     
@@ -137,7 +140,9 @@
                                 <div class="col-sm-9">
     
                                     <h4 class="nomargin">{{ $details->nama_product }}</h4>
-    
+
+                                    <input type="hidden" name="product_id[]" value="{{$details->id_product}}">
+
                                 </div>
     
                             </div>
@@ -146,8 +151,7 @@
     
                         <td data-th="Price">Rp{{ $details->harga }}</td>
     
-    
-                        <td data-th="Subtotal" class="text-center">{{ intval($details->harga) * intval($details->qty) }}</td>
+                          <input data-th="Subtotal" name="price[]" type="hidden" class="text-center" value="{{ intval($details->harga) * intval($details->qty) }}">{{ intval($details->harga) * intval($details->qty) }}</td>
     
                         <td class="actions" data-th="">
                           
@@ -156,7 +160,7 @@
                         </td>
                         <td class="actions" data-th="">
 
-                          <a  href="{{ route('addtobatal', $details->id_product) }}"> <button class="btn btn-success">BATAL</button> </a>                        
+                          <a  href="{{ route('addtobatal', $details->id) }}" class="btn btn-success"> BATAL </a>                        
                         </td>
     
                     </tr>
@@ -167,7 +171,7 @@
           <tfoot>
 
             <tr>
-    
+              <input type="hidden" name="subtotal" value="{{$total}}">
                 <td colspan="5" class="text-right"><h3><strong>Total Rp{{ $total }}</strong></h3></td>
     
             </tr>
@@ -178,23 +182,25 @@
     
                     <a href="{{ url('/food/0') }}" class="btn btn-warning"><i class="fa fa-angle-left"></i> Continue Shopping</a>
                     
-                    @if (isset($details))
+                    {{-- @if (isset($details))
                     <a  href="{{ route('addtocheckout', $details->id) }}"> <button class="btn btn-success">Checkout</button> </a>
                     @endif
-                    
+                     --}}
+                     <button type="submit" button class="btn btn-success" >Checkout</button>
     
                 </td>
     
             </tr>
         </tfoot>
         </table>
+    </form>
         {{-- @section('scripts') --}}
 
 <script type="text/javascript">
 
   
 
-    
+
 
   
 

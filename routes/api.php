@@ -42,6 +42,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('drink', [ProductController::class, 'drink_action']);
     Route::get('food', [ProductController::class, 'food_action']);
     Route::post('hapus', [ProductController::class, 'hapus_action']);
+    Route::post('remove_proses', [ProductController::class, 'hapus_proses']);
     Route::post('delete', [ProductController::class, 'delete_action']);
     Route::get('search', [ProductController::class, 'pencarian']);
     Route::post('token', [UserController::class, 'logout_action']);
@@ -51,6 +52,10 @@ Route::middleware('auth:api')->group( function () {
     Route::get('data_favorit', [ProductController::class, 'datafavoritcuyy']);
     Route::get('data_cart', [ProductController::class, 'cart']);
     Route::get('admin', [ProductController::class, 'data_proses']);
+    Route::get('admin2', [ProductController::class, 'data_dikirim']);
+    Route::get('admin3', [ProductController::class, 'data_batal']);
+    Route::get('admin4', [ProductController::class, 'data_selesai']);
+    Route::get('harga', [ProductController::class, 'total']);
     
 
 

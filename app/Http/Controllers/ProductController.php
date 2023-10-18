@@ -182,9 +182,9 @@ class ProductController extends Controller
             'user_id'=>$user,
             'id_product'=>$request->id,
             'total'=>$request->subtotal,
-            // 'gambar'=>$product->gambar,
+            // 'gambar'=>$value->gambar,
             // 'nama_product'=>$value->nama_product,
-            'alamat'=>$request->alamat,
+            'alamat'=>$alamat->alamat,
             'qty'=>1,
 
         ]);
@@ -197,6 +197,7 @@ class ProductController extends Controller
                     'qty'=>1,
                     'product_id'=>$value,
                     'totalharga'=>$request->price[$key],
+                    'alamat'=>$alamat->alamat,
                 ]);
             }
         }
@@ -208,66 +209,99 @@ class ProductController extends Controller
     public function orderproses()
     {
         $user = auth()->user()->id;
-        $post = Order::where('status', 'di proses');
-        $data = $post->get();
-        return view('orderproses', ['orderList' => $data]);
+        $product = Detail::where('user_id', $user)->get();
+        // dd($user);
+        $post = Detail::leftJoin('tb_product', 'tb_product.id', 'tb_orderdetail.product_id') // leftJoin('nama_tabel_join', 'nama_tabel_join.id', 'nama_tabel_utama.foreign_key')
+        ->select(
+            'tb_orderdetail.id',
+            'tb_orderdetail.product_id',
+            'tb_orderdetail.user_id',
+            'tb_orderdetail.totalharga',
+            'tb_orderdetail.qty',
+            'tb_orderdetail.order_id',
+            'tb_orderdetail.statusproduct', // 'nama_tabel.nama_kolom'
+            'tb_product.nama_product',
+            'tb_product.gambar', // 'nama_tabel.nama_kolom'
+            // lanjutkan kebawah untuk ambil data yang dibutuhkan
+        )->where('tb_orderdetail.user_id', $user)->where('statusproduct', 'di proses')->get();
+        // dd($post);
+        //  dd($data);
+        return view('orderproses', ['orderList' => $post]);
     }
     public function orderkirim()
     {
         $user = auth()->user()->id;
-        $post = Order::where('status', 'di kirim');
-        $data = $post->get();
-        return view('orderkirim', ['orderList' => $data]);
+        $product = Detail::where('user_id', $user)->get();
+        $post = Detail::leftJoin('tb_product', 'tb_product.id', 'tb_orderdetail.product_id') // leftJoin('nama_tabel_join', 'nama_tabel_join.id', 'nama_tabel_utama.foreign_key')
+        ->select(
+            'tb_orderdetail.id',
+            'tb_orderdetail.product_id',
+            'tb_orderdetail.user_id',
+            'tb_orderdetail.totalharga',
+            'tb_orderdetail.qty',
+            'tb_orderdetail.order_id',
+            'tb_orderdetail.statusproduct', // 'nama_tabel.nama_kolom'
+            'tb_product.nama_product',
+            'tb_product.gambar', // 'nama_tabel.nama_kolom'
+            // lanjutkan kebawah untuk ambil data yang dibutuhkan
+        )->where('tb_orderdetail.user_id', $user)->where('statusproduct', 'di kirim')->get();
+        
+        // dd($post);
+        //  dd($data);
+        return view('orderkirim', ['orderList' => $post]);
     }
     public function orderbatal()
     {
         $user = auth()->user()->id;
-        $post = Batal::where('status', 'di batalkan');
-        $data = $post->get();
-        return view('orderbatal', ['orderList' => $data]);
+        $product = Batal::where('user_id', $user)->get();
+        return view('orderbatal', ['orderList' => $product]);
     }
     public function addtobatal($id)
     {
+       
+            $user = auth()->user()->id;
+            $menu = Product::where('id', $id)->first();
+            $product = Detail::where('product_id', $id)->first();
+            $alamat = User::where('id', $user)->first();
+            $detail = Product::where('id', $user)->first();
+            Batal::create([
+                'user_id'=>$user,
+                'product_id'=>$product->id,
+                'total'=>$menu->harga,
+                'gambar'=>$menu->gambar,
+                'nama_product'=>$menu->nama_product,
+                'status'=>'di batalkan',
+                'alamat'=>$alamat->alamat,
+            ]);
+    
+            Detail::where('product_id', $id)->first()->delete();
+            return redirect()->route('orderproses');
         
-        $user = auth()->user()->id;
-        $product = Keranjang::where('id_product', $id)->first();
-        $alamat = User::where('id', $user)->first();
-        Batal::create([
-            'user_id'=>$user,
-            'id_product'=>$product->id,
-            'total'=>$product->harga * $product->qty,
-            'gambar'=>$product->gambar,
-            'nama_product'=>$product->nama_product,
-            'status'=>'di batalkan',
-            'alamat'=>$alamat->alamat,
-        ]);
-
-        Keranjang::where('id_product', $id)->first()->delete();
-        return redirect()->route('cart');
     }
     public function orderselesai()
     {
         $user = auth()->user()->id;
-        $post = Selesai::where('status', 'selesai');
-        $data = $post->get();
-        return view('orderselesai', ['orderList' => $data]);
+        $product = Selesai::where('user_id', $user)->get();
+        return view('orderselesai', ['orderList' => $product]);
     }
     public function addtoselesai($id)
     {
         $user = auth()->user()->id;
-        $product = Order::where('id_product', $id)->first();
+        $menu = Product::where('id', $id)->first();
+        $product = Detail::where('product_id', $id)->first();
         $alamat = User::where('id', $user)->first();
+        $detail = Product::where('id', $user)->first();
         Selesai::create([
             'user_id'=>$user,
             'id_product'=>$product->id,
-            'total'=>$product->total,
-            'gambar'=>$product->gambar,
-            'nama_product'=>$product->nama_product,
+            'total'=>$menu->harga,
+            'gambar'=>$menu->gambar,
+            'nama_product'=>$menu->nama_product,
             'status'=>'selesai',
             'alamat'=>$alamat->alamat,
         ]);
 
-        Order::where('id_product', $id)->delete();
+        Detail::where('product_id', $id)->delete();
         return redirect()->back()->with('success', 'Product added to favourite successfully!');
     }
 }

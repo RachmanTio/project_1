@@ -67,6 +67,7 @@ Route::middleware('auth')->group( function () {
     // Route::get('editProfile', [UserController::class, 'editProfile'])->name('editProfile');
     Route::get('profil', [userController::class, 'tampilkanProfil'])->name('profil');
     Route::get('profile', [UserController::class, 'profile'])->name('profile');
+    Route::post('prosescheckout', [ProductController::class, 'addtocheckout'])->name('prosescheckout');
     Route::post('profile', [UserController::class, 'user_profile'])->name('user_profile');
     Route::get('checkout', [ProductController::class, 'checkout'])->name('checkout');
     Route::get('addtocheckout/{id}', [ProductController::class, 'addtocheckout'])->name('addtocheckout');

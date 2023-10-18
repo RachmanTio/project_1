@@ -52,8 +52,8 @@
               </div>  --}}
                 <div class="d-flex justify-content-between p-3">
                     <p class="lead mb-0">
-                    <h5>STATUS {{$item->status}}</p>
-                    </h5>
+                      <h5 class="mb-0">STATUS {{$item->statusproduct}}</h5>
+                    </p>
                 </div>
               <img src="{{asset('')  . $item->gambar}}" alt="image" height="300" width="355 "
                 class="card-img-top" alt=""  />
@@ -67,7 +67,7 @@
 
               </div>
               <div class="d-flex justify-content-between mb-3">
-                <h5 class="text-success">Rp {{$item->total}}</h5>
+                <h5 class="mb-0">{{$item->totalharga}}</h5>
 
             </div>
             <div class="d-flex justify-content-between mb-3">

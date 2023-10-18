@@ -120,7 +120,7 @@ class ProductController extends BaseController
             $order = Order::create([
                 'user_id'=>$user,
                 'total'=>$total,
-                'alamat'=>$request->alamat,
+                'alamat'=>$alamat->alamat,
                 'qty'=>1,
     
             ]);
@@ -132,6 +132,7 @@ class ProductController extends BaseController
                         'user_id'=>$user,
                         'qty'=>1,
                         'product_id'=>$value,
+                        'alamat'=>$alamat->alamat,
                         'totalharga'=>$request->price[$key],
                     ]);
                 }
@@ -145,17 +146,52 @@ class ProductController extends BaseController
     public function data_proses()
     {
         $user = auth()->user()->id;
-        $Order = Order::where('status', 'di proses')->get();
+        $product = Detail::where('user_id', $user)->get();
+        // $Order = Order::where('status', 'di proses')->get();
+        $post = Detail::leftJoin('tb_product', 'tb_product.id', 'tb_orderdetail.product_id') // leftJoin('nama_tabel_join', 'nama_tabel_join.id', 'nama_tabel_utama.foreign_key')
+        ->select(
+            'tb_orderdetail.id',
+            'tb_orderdetail.product_id',
+            'tb_orderdetail.user_id',
+            'tb_orderdetail.totalharga',
+            'tb_orderdetail.qty',
+            'tb_orderdetail.order_id',
+            'tb_orderdetail.alamat',
+            'tb_orderdetail.statusproduct', // 'nama_tabel.nama_kolom'
+            'tb_product.nama_product',
+            'tb_product.gambar', // 'nama_tabel.nama_kolom'
+            // lanjutkan kebawah untuk ambil data yang dibutuhkan
+        )->where('tb_orderdetail.user_id', $user)->where('statusproduct', 'di proses')->get();
 
-        return $this->sendResponse($Order, 'Products retrieved successfully.');
+        return $this->sendResponse($post, 'Products retrieved successfully.');
+    }
+
+    public function hapus_proses(Request $request){
+        Detail::where('id', $request->id)->first()->delete();
+        return $this->sendResponse('succes', 'Products retrieved successfully.');
     }
 
     public function data_dikirim()
     {
         $user = auth()->user()->id;
-        $Order = Order::where('status', 'di kirim')->get();
+        $product = Detail::where('user_id', $user)->get();
 
-        return $this->sendResponse($Order, 'Products retrieved successfully.');
+        $post = Detail::leftJoin('tb_product', 'tb_product.id', 'tb_orderdetail.product_id') // leftJoin('nama_tabel_join', 'nama_tabel_join.id', 'nama_tabel_utama.foreign_key')
+        ->select(
+            'tb_orderdetail.id',
+            'tb_orderdetail.product_id',
+            'tb_orderdetail.user_id',
+            'tb_orderdetail.totalharga',
+            'tb_orderdetail.qty',
+            'tb_orderdetail.order_id',
+            'tb_orderdetail.alamat',
+            'tb_orderdetail.statusproduct', // 'nama_tabel.nama_kolom'
+            'tb_product.nama_product',
+            'tb_product.gambar', // 'nama_tabel.nama_kolom'
+            // lanjutkan kebawah untuk ambil data yang dibutuhkan
+        )->where('tb_orderdetail.user_id', $user)->where('statusproduct', 'di kirim')->get();
+
+        return $this->sendResponse($post, 'Products retrieved successfully.');
     }
 
     public function Selesai(Request $request)
@@ -164,6 +200,8 @@ class ProductController extends BaseController
 
         // dd($request->id);
         $user = auth()->user()->id;
+        $menu = Product::where('id', $request->id)->first();
+        $detail = Product::where('id', $user)->first();
         $product = Keranjang::where('id_product', $request->id)->first();
         $alamat = User::where('id', $user)->first();
         $Selesai = Selesai::create([
@@ -187,6 +225,8 @@ class ProductController extends BaseController
 
         // dd($request->id);
         $user = auth()->user()->id;
+        $menu = Product::where('id', $request->id)->first();
+        $detail = Product::where('id', $user)->first();
         $product = Keranjang::where('id_product', $request->id)->first();
         $alamat = User::where('id', $user)->first();
         $Batal = Batal::create([
@@ -203,6 +243,22 @@ class ProductController extends BaseController
         return $this->sendResponse($Batal, 'Products retrieved successfully.');
     }
 
+    public function data_batal()
+    {
+        $user = auth()->user()->id;
+        $product = Batal::where('user_id', $user)->get();
+        return $this->sendResponse($product, 'Products retrieved successfully.');
+        
+    }
+
+    public function data_selesai()
+    {
+        $user = auth()->user()->id;
+        $product = Selesai::where('user_id', $user)->get();
+        return $this->sendResponse($product, 'Products retrieved successfully.');
+        
+    }
+
     public function datafavoritcuyy(){
             $user = auth()->user()->id;
             $data_favorit = Favourite::where('user_id', $user)->get();
@@ -217,5 +273,13 @@ class ProductController extends BaseController
         if ($data_keranjang){
             return $this->sendResponse($data_keranjang, 'Products retrieved successfully.');
         }
+    }
+
+    public function total()
+    {
+        $user = auth()->user()->id;
+        $order = Order::where('user_id', $user)->orderBy('id','desc')->first();
+        return $this->sendResponse($order, 'Products retrieved successfully.');
+    
     }
 }

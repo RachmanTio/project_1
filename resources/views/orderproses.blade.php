@@ -121,7 +121,11 @@
     
                         </td>
     
-                        <td data-th="Price">Rp{{ $details->total}}</td>
+                        <td data-th="Price">Rp{{ $details->totalharga}}</td>
+                        <td class="actions" data-th="">
+
+                            <a  href="{{ route('addtobatal', $details->product_id) }}" class="btn btn-danger"> BATAL </a>                        
+                          </td>
     
                     </tr>
     

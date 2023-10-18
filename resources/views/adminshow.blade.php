@@ -42,12 +42,12 @@
       <form action="{{route('actionstatus')}}">
         <div class="row" >
             <div class="col-md-6" >
-                <img src="{{asset('')  . $order->gambar}}" alt="{{$order->nama}}" height="300" width="400" class="img-fluid" >
+              <img src="{{asset('')  . $order->gambar}}" alt="{{$order->nama_product}}" height="300" width="400" class="img-fluid" >
             </div>
             <div class="col-md-6">
                 <h1>{{$order->nama}}</h1>
                 {{-- <p class="text-muted">Kategori: {{ $order->category }}</p> --}}
-                <h3 class="text-success">Rp {{$order->total}}</h3>
+                <h3 class="text-success">Rp {{$order->totalharga}}</h3>
                 <p>USER ID :{{$order->user_id}}</p>
                 <div class="mt-4">
                   <a class="btn btn-success btn-md"
