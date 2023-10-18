@@ -53,7 +53,7 @@
     
             </tr>
     
-          </thead>
+        </thead>
           <tbody>
             @php $total = 0 @endphp
 
@@ -84,6 +84,10 @@
                         </td>
     
                         <td data-th="Price">Rp{{ $details->totalharga}}</td>
+                        <td class="actions" data-th="">
+
+                          <a  href="{{ route('addtobatal', $details->product_id) }}" class="btn btn-danger"> BATAL </a>                        
+                        </td>
     
                     </tr>
     
@@ -102,6 +106,7 @@
     
             </tr>
         </tfoot>
+        
         </table>
         {{-- @section('scripts') --}}
 

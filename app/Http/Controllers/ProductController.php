@@ -308,9 +308,7 @@ class ProductController extends Controller
             'user_id'=>$user,
             'id_product'=>$request->id,
             'total'=>$request->subtotal,
-            // 'gambar'=>$value->gambar,
-            // 'nama_product'=>$value->nama_product,
-            'alamat'=>$request->alamat,
+            'alamat'=>$alamat->alamat,
             'qty'=>1,
 
         ]);
@@ -371,8 +369,7 @@ class ProductController extends Controller
             // lanjutkan kebawah untuk ambil data yang dibutuhkan
         )->where('tb_orderdetail.user_id', $user)->where('statusproduct', 'di kirim')->get();
         
-        // dd($post);
-        //  dd($data);
+
         return view('orderkirim', ['orderList' => $post]);
     }
     public function orderbatal()
@@ -383,26 +380,23 @@ class ProductController extends Controller
     }
     public function addtobatal($id)
     {
-        // dd($id);
         $user = auth()->user()->id;
         $menu = Product::where('id', $id)->first();
-        $detail = Product::where('id', $user)->first();
-        $product = Keranjang::where('id', $id)->first();
+        $product = Detail::where('product_id', $id)->first();
         $alamat = User::where('id', $user)->first();
-        // dd($product);
+        $detail = Product::where('id', $user)->first();
         Batal::create([
             'user_id'=>$user,
-            'id_product'=>$product->id_product,
-            'total'=>$product->harga,
-            'gambar'=>$product->gambar,
-            'nama_product'=>$product->nama_product,
+            'product_id'=>$product->id,
+            'total'=>$menu->harga,
+            'gambar'=>$menu->gambar,
+            'nama_product'=>$menu->nama_product,
             'status'=>'di batalkan',
             'alamat'=>$alamat->alamat,
-
         ]);
 
-        Keranjang::where('id', $id)->first()->delete();
-        return redirect()->route('cart');
+        Detail::where('product_id', $id)->first()->delete();
+        return redirect()->route('orderproses');
     }
     public function orderselesai()
     {
@@ -425,6 +419,8 @@ class ProductController extends Controller
             'nama_product'=>$menu->nama_product,
             'status'=>'selesai',
             'alamat'=>$alamat->alamat,
+            'qty'=>1,
+
         ]);
 
         Detail::where('product_id', $id)->delete();

@@ -16,7 +16,9 @@
           </div>
           <ul class="nav navbar-nav">
             <li><a href="/adminhome">FOOD</a></li>
-            {{-- <li><a href="/profil">PROFIL</a></li> --}}
+          </ul>
+          <ul class="nav navbar-nav">
+            <li><a href="/invoice">REKAP PENDAPATAN</a></li>
           </ul>
           <ul class="nav navbar-nav navbar-right">
             <li><a href="{{route('logout')}}"><span class="glyphicon glyphicon-log-in"></span> LogOut</a></li>

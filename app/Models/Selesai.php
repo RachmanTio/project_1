@@ -17,5 +17,6 @@ class Selesai extends Model
         'nama_product',
         'status',
         'alamat',
+        'qty',
     ];
 }
