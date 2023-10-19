@@ -16,18 +16,20 @@
 				<tr>
                     <th>NO</th>
 					<th>No Pelanggan</th>
+					<th>No Product</th>
 					<th>Nama Product</th>
 					<th>Harga</th>
 					<th>Alamat</th>
 				</tr>
 			</thead>
 			<tbody>
-				@php $i=0 @endphp
+				@php $i=1 @endphp
 				@foreach($productList as $p)
                 {{-- @php $total += intval($p->harga) * intval($p->qty) @endphp --}}
 				<tr>
 					<td>{{ $i++ }}</td>
-                    <td data-th="No Pelanggan">{{ $p->id_product }}</td>
+					<td data-th="No Pelanggan">{{ $p->user_id }}</td>
+                    <td data-th="No Product">{{ $p->id_product }}</td>
                     <td data-th="Nama Product">{{ $p->nama_product }}</td>
                     <td data-th="Price">Rp{{ $p->total }}</td>
                     <td data-th="Alamat">{{ $p->alamat }}</td>

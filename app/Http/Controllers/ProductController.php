@@ -413,7 +413,7 @@ class ProductController extends Controller
         $detail = Product::where('id', $user)->first();
         Selesai::create([
             'user_id'=>$user,
-            'id_product'=>$product->id,
+            'id_product'=>$product->product_id,
             'total'=>$menu->harga,
             'gambar'=>$menu->gambar,
             'nama_product'=>$menu->nama_product,
