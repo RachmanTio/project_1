@@ -127,7 +127,7 @@ class ProductController extends BaseController
             if (isset($request->product_id)) {
                 foreach ($request->product_id as $key => $value) {
                     // dd($value);
-                   Detail::create([
+                 $detail =  Detail::create([
                         'order_id'=>$order->id,
                         'user_id'=>$user,
                         'qty'=>1,
@@ -139,7 +139,8 @@ class ProductController extends BaseController
             }
     
                   Keranjang::where('user_id', $user)->where('id' ,$request->id)->delete();
-            return $this->sendResponse($order, 'Products retrieved successfully.');
+            // return $this->sendResponse([$order, $detail], 'Products retrieved successfully.');
+                 return $this->sendResponse($detail,'Products retrieved successfully.');
 
     }
 

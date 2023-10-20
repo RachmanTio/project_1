@@ -13,8 +13,8 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('tb_orderdetail', function (Blueprint $table) {
-            $table->varchar(255)('alamat', false);
+        Schema::table('tb_selesai', function (Blueprint $table) {
+            $table->integer('qty', false);
         });
     }
 
@@ -25,6 +25,8 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('alamat');
+        Schema::table('tb_selesai', function (Blueprint $table) {
+            //
+        });
     }
 };

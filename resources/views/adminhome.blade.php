@@ -34,6 +34,9 @@
                   <a class="nav-link text-light font-weight-bold px-3" href="{{route('logout')}}">LogOut</a>
 
               </li>
+              <li class="nav-item">
+                <a class="nav-link text-light font-weight-bold px-3" href="/invoice">REKAP PENDAPATAN</a>
+              </ul>
 
         </nav>
       <div class="container py-5">

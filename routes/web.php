@@ -84,6 +84,9 @@ Route::middleware('auth')->group( function () {
     Route::get('orderselesai', [ProductController::class, 'orderselesai'])->name('orderselesai');
     //Admin Show
     Route::get('order/{id}', [AdminController::class, 'adminshow'])->name('adminshow');
+
+    Route::get('invoice', [AdminController::class, 'invoice'])->name('invoice');
+    Route::get('cetak_pdf', [AdminController::class, 'cetak_pdf'])->name('cetak_pdf');
 });
 
 

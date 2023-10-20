@@ -3,10 +3,11 @@
 namespace App\Http\Controllers\API;
 
 use App\Models\User;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
+use App\Models\Selesai;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class UserController extends BaseController
 {
@@ -35,6 +36,13 @@ class UserController extends BaseController
         $request->user()->tokens()->delete();
 
         return response()->json(['message' => 'Berhasil logout']);
+    }
+
+    public function invoice_cuyyy()
+    {
+        $productList = Selesai::get();
+        $total = Selesai::sum('total');
+      return $this->sendResponse([$total, $productList], 'Products retrieved successfully.');
     }
 
     /**

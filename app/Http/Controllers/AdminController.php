@@ -3,9 +3,12 @@
 namespace App\Http\Controllers;
 
 use App\Models\Order;
+
 use App\Models\Detail;
+use App\Models\Selesai;
+use PDF;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 
@@ -75,6 +78,7 @@ class AdminController extends Controller
         ->first();
         return view('adminshow', compact('order'));
     }
+
     public function actionstatus(Request $request)
     {
         // return dd($request->all());
@@ -98,6 +102,26 @@ class AdminController extends Controller
 
         // Session::flash('message', 'Register Berhasil. Akun Anda sudah Aktif silahkan Login menggunakan email dan password.');
         return redirect('/adminhome');
+    }
+
+    public function invoice()
+    {
+        $productList = Selesai::get();
+        $total = Selesai::sum('total');
+        return view('invoice', compact('productList', 'total'));
+    }
+    public function cetak_pdf()
+    {
+        $productList = Selesai::get();
+
+    	$admin = Selesai::all();
+        $total = Selesai::sum('total');
+        $product = Selesai::get();
+ 
+    	$pdf = PDF::loadview('admin_pdf',['productList'=>$admin, 'total'=>$total])->setOptions(['defaultFont' => 'sans-serif']);
+        $output = $pdf->output();
+
+    	return $pdf->download('invoice.pdf', compact('productList', 'total'));
     }
 
     /**
