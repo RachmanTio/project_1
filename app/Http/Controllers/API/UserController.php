@@ -5,6 +5,7 @@ namespace App\Http\Controllers\API;
 use App\Models\User;
 use App\Models\Selesai;
 use Illuminate\Http\Request;
+use PDF;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -44,6 +45,23 @@ class UserController extends BaseController
         $total = Selesai::sum('total');
       return $this->sendResponse([$total, $productList], 'Products retrieved successfully.');
     }
+
+    public function cetak_file()
+    {
+        $productList = Selesai::get();
+
+    	$admin = Selesai::all();
+        $total = Selesai::sum('total');
+        $product = Selesai::get();
+ 
+    	$pdf = PDF::loadview('admin_pdf',['productList'=>$admin, 'total'=>$total])->setOptions(['defaultFont' => 'sans-serif']);
+        $output = $pdf->output();
+
+        return $this->sendResponse([$total, $productList], 'Products retrieved successfully.');
+    
+    }
+
+
 
     /**
      * Show the form for creating a new resource.

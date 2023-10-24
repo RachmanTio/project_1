@@ -57,6 +57,7 @@ Route::middleware('auth:api')->group( function () {
     Route::get('admin4', [ProductController::class, 'data_selesai']);
     Route::get('harga', [ProductController::class, 'total']);
     Route::get('invoice', [UserController::class, 'invoice_cuyyy']);
+    Route::get('cetak', [UserController::class, 'cetak_file']);
     
 
 
