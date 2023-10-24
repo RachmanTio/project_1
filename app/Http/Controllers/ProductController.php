@@ -387,7 +387,7 @@ class ProductController extends Controller
         $detail = Product::where('id', $user)->first();
         Batal::create([
             'user_id'=>$user,
-            'product_id'=>$product->id,
+            'id_product'=>$menu->id,
             'total'=>$menu->harga,
             'gambar'=>$menu->gambar,
             'nama_product'=>$menu->nama_product,
