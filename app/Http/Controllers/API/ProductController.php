@@ -207,7 +207,7 @@ class ProductController extends BaseController
 
         ]);
     }
-    Orderdetail::where('product_id', $request)->delete();
+    Orderdetail::where('user_id', $user)->delete();
     return $this->sendResponse($Order,'Products retrieved successfully.');
      
     }
@@ -228,7 +228,7 @@ class ProductController extends BaseController
         ]);
     }
 
-        Orderdetail::where('product_id', $request)->delete();
+        Orderdetail::where('user_id', $user)->delete();
         return $this->sendResponse($Order, 'Products retrieved successfully.');
     
 }
